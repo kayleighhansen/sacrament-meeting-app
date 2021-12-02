@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { MeetingsComponent } from './meetings/home.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
-import { BishopricComponent } from './bishopric/bishopric.component';
+import { BishopricComponent } from './bishopric-list/bishopric-list.component';
 import { DisplayComponent } from './meetings/display/display.component';
 
 @NgModule({

@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BishopricComponent } from './bishopric.component';
+import { BishopricEditComponent } from './bishopric-edit.component';
 
-describe('BishopricComponent', () => {
-  let component: BishopricComponent;
-  let fixture: ComponentFixture<BishopricComponent>;
+describe('BishopricEditComponent', () => {
+  let component: BishopricEditComponent;
+  let fixture: ComponentFixture<BishopricEditComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ BishopricComponent ]
+      declarations: [ BishopricEditComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BishopricComponent);
+    fixture = TestBed.createComponent(BishopricEditComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
