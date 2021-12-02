@@ -9,6 +9,7 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { MeetingsComponent } from './meetings/home.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { BishopricComponent } from './bishopric/bishopric.component';
+import { DisplayComponent } from './meetings/display/display.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { BishopricComponent } from './bishopric/bishopric.component';
     NavMenuComponent,
     MeetingsComponent,
     FetchDataComponent,
-    BishopricComponent
+    BishopricComponent,
+    DisplayComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

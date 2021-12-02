@@ -1,0 +1,9 @@
+.meeting-home {
+    display:flex;
+    justify-content: space-between;
+}
+
+.meeting-home section div {
+    padding-bottom: 30px;
+    /* margin: 10px; */
+}
