@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.EntityFrameworkCore;
 
 namespace SacramentMeetingApp
 {
@@ -26,6 +27,9 @@ namespace SacramentMeetingApp
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+
+            services.AddDbContext<SacramentMeetingContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("SacramentMeetingContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
