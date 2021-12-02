@@ -1,1 +1,3 @@
-# sacrament-meeting-app
+# Sacrament Meeting App
+
+Angular .NET Final Project
