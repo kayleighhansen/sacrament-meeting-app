@@ -9,6 +9,7 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { MeetingsComponent } from './meetings/home.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { BishopricComponent } from './bishopric-list/bishopric-list.component';
+import { BishopricEditComponent } from './bishopric-list/bishopric-edit/bishopric-edit.component';
 import { DisplayComponent } from './meetings/display/display.component';
 
 @NgModule({
@@ -18,6 +19,7 @@ import { DisplayComponent } from './meetings/display/display.component';
     MeetingsComponent,
     FetchDataComponent,
     BishopricComponent,
+    BishopricEditComponent,
     DisplayComponent
   ],
   imports: [
