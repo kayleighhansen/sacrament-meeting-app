@@ -13,4 +13,7 @@ using SacramentMeeting.Models;
         }
 
         public DbSet<SacramentMeeting.Models.Meeting> Meeting { get; set; }
+        public DbSet<SacramentMeeting.Models.Meeting> Bishopric { get; set; }
+        public DbSet<SacramentMeeting.Models.Meeting> Hymn { get; set; }
+        public DbSet<SacramentMeeting.Models.Meeting> Speaker { get; set; }
     }
