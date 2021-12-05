@@ -15,6 +15,7 @@ import { BishopricListComponent } from './bishopric/bishopric-list/bishopric-lis
 import { MeetingComponent } from './meetings/meeting/meeting.component';
 import { HomeComponent } from './home/home.component';
 import { AddMeetingComponent } from './meetings/add-meeting/add-meeting.component';
+import { EditMeetingComponent } from './meetings/edit-meeting/edit-meeting.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { AddMeetingComponent } from './meetings/add-meeting/add-meeting.componen
     MeetingComponent,
     HomeComponent,
     AddMeetingComponent,
+    EditMeetingComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -37,7 +39,8 @@ import { AddMeetingComponent } from './meetings/add-meeting/add-meeting.componen
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'bishopric', component: BishopricComponent },
-      { path: 'add-meeting', component: AddMeetingComponent }
+      { path: 'add-meeting', component: AddMeetingComponent },
+      { path: 'edit-meeting', component: EditMeetingComponent }
     ])
   ],
   providers: [],

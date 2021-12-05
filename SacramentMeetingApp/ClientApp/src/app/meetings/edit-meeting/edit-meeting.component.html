@@ -1,0 +1,104 @@
+<div class="add-meeting-heading">
+    <h2>Edit Meeting</h2>
+    <p class="required-warning">* Required Fields</p>
+    <a href="./">Back to Meetings</a>
+</div>
+
+<form>
+    <div class="add-meeting-form">
+        <section class="form-section">
+            <div>
+                <div class="form-field">
+                    <label for="date">Date <span class="required">*</span></label><br>
+                    <input type="date" class="" id="date" name="date" [ngModel]="meeting?.date" #dateInput="ngModel"
+                        required>
+                </div>
+                <div class="form-field">
+                    <label for="presiding">Presiding <span class="required">*</span></label><br>
+                    <input type="presiding" class="" id="presiding" name="presiding" [ngModel]="meeting?.presiding"
+                        #presidingInput="ngModel" required>
+                </div>
+                <div class="form-field">
+                    <label for="openingPrayer">Opening Prayer <span class="required">*</span></label><br>
+                    <input type="text" class="" id="openingPrayer" name="openingPrayer"
+                        [ngModel]="meeting?.openingPrayer" #openingPrayerInput="ngModel" required>
+                </div>
+                <div class="form-field">
+                    <label for="closingPrayer">Closing Prayer <span class="required">*</span></label><br>
+                    <input type="text" class="" id="closingPrayer" name="closingPrayer"
+                        [ngModel]="meeting?.closingPrayer" #closingPrayerInput="ngModel" required>
+                </div>
+            </div>
+        </section>
+        <section class="form-section">
+            <div>
+                <div class="form-field">
+                    <label for="openingHymn">Opening Hymn <span class="required">*</span></label><br>
+                    <input type="number" class="" id="openingHymn" name="openingHymn" [ngModel]="meeting?.openingHymn"
+                        #openingHymnInput="ngModel" required>
+                </div>
+                <div class="form-field">
+                    <label for="sacramentHymn">Sacrament Hymn <span class="required">*</span></label><br>
+                    <input type="number" class="" id="sacramentHymn" name="sacramentHymn"
+                        [ngModel]="meeting?.sacramentHymn" #sacramentHymnInput="ngModel" required>
+                </div>
+                <div class="form-field">
+                    <label for="closingHymn">Closing Hymn <span class="required">*</span></label><br>
+                    <input type="number" class="" id="closingHymn" name="closingHymn" [ngModel]="meeting?.closingHymn"
+                        #closingHymnHymnInput="ngModel" required>
+                </div>
+            </div>
+        </section>
+        <section class="form-section">
+            <div>
+                <div class="form-field">
+                    <label class="container">Fast Sunday Meeting <span class="required">*</span>
+                        <input type="checkbox" checked="checked" required>
+                        <span class="checkmark"></span>
+                    </label>
+                </div>
+                <div class="not-fast-sunday">
+                    <div class="form-field">
+                        <label for="speaker">Speaker</label><br>
+                        <input type="text" class="" id="speaker" name="speaker" [ngModel]="meeting?.speaker"
+                            #speakerInput="ngModel">
+                    </div>
+                    <div class="form-field">
+                        <label for="topic">Topic</label><br>
+                        <input type="text" class="" id="topic" name="topic" [ngModel]="meeting?.topic"
+                            #topicInput="ngModel">
+                    </div>
+
+                </div>
+            </div>
+        </section>
+        <section class="form-section">
+            <div>
+                <div class="form-field">
+                    <div class="form-field">
+                        <label class="container">Special Music Number <span class="required">*</span>
+                            <input type="checkbox" checked="checked" required>
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+                    <div class="music-number">
+                        <div class="form-field">
+                            <label for="musician">Musician/Group</label><br>
+                            <input type="text" class="" id="musician" name="musician" [ngModel]="meeting?.musician"
+                                #musicianInput="ngModel">
+                        </div>
+                        <div class="form-field">
+                            <label for="song">Song</label><br>
+                            <input type="text" class="" id="song" name="song" [ngModel]="meeting?.song"
+                                #songInput="ngModel">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+    <section class="submit-btn">
+        <button type="button" class="btn btn-success">Save</button>
+    </section>
+</form>
