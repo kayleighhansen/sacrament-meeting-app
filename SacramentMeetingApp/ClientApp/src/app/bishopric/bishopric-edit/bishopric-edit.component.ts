@@ -12,7 +12,4 @@ export class BishopricEditComponent implements OnInit {
   ngOnInit() {
   }
 
-  onAddBishopric() {
-
-  }
 }
