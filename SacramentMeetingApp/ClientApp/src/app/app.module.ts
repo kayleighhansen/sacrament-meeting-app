@@ -30,6 +30,10 @@ import { BishopricListComponent } from './bishopric/bishopric-list/bishopric-lis
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
+    RouterModule.forRoot([
+      { path: '', component: MeetingsComponent, pathMatch: 'full' },
+      { path: 'bishopric', component: BishopricComponent }
+    ])
   ],
   providers: [],
   bootstrap: [AppComponent]
