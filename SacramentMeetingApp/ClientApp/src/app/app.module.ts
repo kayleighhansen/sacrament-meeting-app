@@ -16,21 +16,24 @@ import { MeetingComponent } from './meetings/meeting/meeting.component';
 import { HomeComponent } from './home/home.component';
 import { AddMeetingComponent } from './meetings/add-meeting/add-meeting.component';
 import { EditMeetingComponent } from './meetings/edit-meeting/edit-meeting.component';
+import { BishopricItemComponent } from './bishopric/bishopric-list/bishopric-item/bishopric-item.component';
+import { BishopricEditComponent } from './bishopric/bishopric-edit/bishopric-edit.component';
 
 @NgModule({
   declarations: [
+    AddMeetingComponent,
     AppComponent,
-    NavMenuComponent,
-    FetchDataComponent,
-    DisplayComponent,
     BishopricComponent,
     BishopricDetailComponent,
-    BishopricStartComponent,
+    BishopricItemComponent,
     BishopricListComponent,
-    MeetingComponent,
-    HomeComponent,
-    AddMeetingComponent,
+    BishopricStartComponent,
+    DisplayComponent,
     EditMeetingComponent,
+    FetchDataComponent,
+    HomeComponent,
+    MeetingComponent,
+    NavMenuComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -38,13 +41,21 @@ import { EditMeetingComponent } from './meetings/edit-meeting/edit-meeting.compo
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: 'home', component: HomeComponent, children: 
-        [
-          { path: ':id', component: DisplayComponent}
-        ]
+      {
+        path: 'home', component: HomeComponent, children:
+          [
+            { path: ':id', component: DisplayComponent }
+          ]
       },
       { path: ':id/edit', component: EditMeetingComponent },
-      { path: 'bishopric', component: BishopricComponent },
+      {
+        path: 'bishopric', component: BishopricComponent, children: [
+          { path: '', component: BishopricStartComponent },
+          { path: 'new', component: BishopricEditComponent },
+          { path: ':id', component: BishopricDetailComponent },
+          { path: ':id/edit', component: BishopricEditComponent },
+        ]
+      },
       { path: 'add-meeting', component: AddMeetingComponent }
     ])
   ],

@@ -1,1 +1,25 @@
-<p>bishopric-detail works!</p>
+  <div class="row">
+    <div class="col-xs-12">
+      <h1>{{ bishopric.name }}</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      <div class="btn-group" appDropdown>
+        <button type="button" class="btn btn-primary dropdown-toggle">
+          Manage Bishopric Member <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <li><a style="cursor: pointer;" (click)="onEditBishopric()">Edit Bishopric Member</a></li>
+          <li><a style="cursor: pointer;">Release Bishopric Member</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-xs-12">
+      {{ bishopric.calling }}
+    </div>
+  </div>
+
+  

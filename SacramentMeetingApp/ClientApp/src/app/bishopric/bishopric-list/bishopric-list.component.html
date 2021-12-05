@@ -1,1 +1,15 @@
-<p>bishopric-list works!</p>
+<div class="row">
+    <div class="col-xs-12">
+      <button class="btn btn-success" (click)="onNewBishopric()">Add Bishopric Member</button>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-xs-12">
+      <bishopric-item 
+      *ngFor="let bishopricEl of bishoprics; let i = index" 
+      [bishopric]="bishopricEl"
+      [index] = 'i'>
+      </bishopric-item>
+    </div>
+  </div>
