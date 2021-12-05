@@ -34,18 +34,24 @@
             <div>
                 <div class="form-field">
                     <label for="openingHymn">Opening Hymn <span class="required">*</span></label><br>
-                    <input type="number" class="" id="openingHymn" name="openingHymn" [ngModel]="meeting?.openingHymn"
+                    <select type="number" class="" id="openingHymn" name="openingHymn" [ngModel]="meeting?.openingHymn"
                         #openingHymnInput="ngModel" required>
+                        <option value="">---</option>
+                    </select>
                 </div>
                 <div class="form-field">
                     <label for="sacramentHymn">Sacrament Hymn <span class="required">*</span></label><br>
-                    <input type="number" class="" id="sacramentHymn" name="sacramentHymn"
+                    <select type="number" class="" id="sacramentHymn" name="sacramentHymn"
                         [ngModel]="meeting?.sacramentHymn" #sacramentHymnInput="ngModel" required>
+                        <option value="">---</option>
+                    </select>
                 </div>
                 <div class="form-field">
                     <label for="closingHymn">Closing Hymn <span class="required">*</span></label><br>
-                    <input type="number" class="" id="closingHymn" name="closingHymn" [ngModel]="meeting?.closingHymn"
+                    <select type="number" class="" id="closingHymn" name="closingHymn" [ngModel]="meeting?.closingHymn"
                         #closingHymnHymnInput="ngModel" required>
+                        <option value="">---</option>
+                    </select>
                 </div>
             </div>
         </section>
@@ -53,11 +59,12 @@
             <div>
                 <div class="form-field">
                     <label class="container">Fast Sunday Meeting <span class="required">*</span>
-                        <input type="checkbox" checked="checked" required>
+                        <input type="checkbox" checked="checked" class="isFastSunday" #checkBox="ngModel" 
+                        [(ngModel)]="shown" name="checkBox">
                         <span class="checkmark"></span>
                     </label>
                 </div>
-                <div class="not-fast-sunday">
+                <div class="fast-sunday" *ngIf="shown">
                     <div class="form-field">
                         <label for="speaker">Speaker</label><br>
                         <input type="text" class="" id="speaker" name="speaker" [ngModel]="meeting?.speaker"
@@ -77,11 +84,12 @@
                 <div class="form-field">
                     <div class="form-field">
                         <label class="container">Special Music Number <span class="required">*</span>
-                            <input type="checkbox" checked="checked" required>
+                            <input type="checkbox" #musicCheckBox="ngModel" class="isMusicSunday"
+                            [(ngModel)]="showMusic" name="musicCheckBox">
                             <span class="checkmark"></span>
                         </label>
                     </div>
-                    <div class="music-number">
+                    <div class="music-number" *ngIf="showMusic">
                         <div class="form-field">
                             <label for="musician">Musician/Group</label><br>
                             <input type="text" class="" id="musician" name="musician" [ngModel]="meeting?.musician"
