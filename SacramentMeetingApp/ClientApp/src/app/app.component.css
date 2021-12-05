@@ -1,8 +1,21 @@
 .meeting-home {
-    display:flex;
+    display:grid;
+    grid-template-columns: 40% 60%;
     justify-content: space-between;
+    gap:5%;
 }
 
 .meeting-home section div {
     padding-bottom: 30px;
+}
+
+.meeting-list div p {
+    border-bottom: 2px solid black;
+}
+
+.display-meeting {
+    border:2px solid black;
+    padding: 10px;
+    border-radius: 10px;
+
 }

@@ -6,33 +6,38 @@ import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
-import { MeetingsComponent } from './meetings/home.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { DisplayComponent } from './meetings/display/display.component';
 import { BishopricComponent } from './bishopric/bishopric.component';
 import { BishopricDetailComponent } from './bishopric/bishopric-detail/bishopric-detail.component';
 import { BishopricStartComponent } from './bishopric/bishopric-start/bishopric-start.component';
 import { BishopricListComponent } from './bishopric/bishopric-list/bishopric-list.component';
+import { MeetingComponent } from './meetings/meeting/meeting.component';
+import { HomeComponent } from './home/home.component';
+import { AddMeetingComponent } from './meetings/add-meeting/add-meeting.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavMenuComponent,
-    MeetingsComponent,
     FetchDataComponent,
     DisplayComponent,
     BishopricComponent,
     BishopricDetailComponent,
     BishopricStartComponent,
-    BishopricListComponent
+    BishopricListComponent,
+    MeetingComponent,
+    HomeComponent,
+    AddMeetingComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
-      { path: '', component: MeetingsComponent, pathMatch: 'full' },
-      { path: 'bishopric', component: BishopricComponent }
+      { path: '', component: HomeComponent, pathMatch: 'full' },
+      { path: 'bishopric', component: BishopricComponent },
+      { path: 'add-meeting', component: AddMeetingComponent }
     ])
   ],
   providers: [],
