@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-add-meeting',
   templateUrl: './add-meeting.component.html',
-  styleUrls: ['./add-meeting.component.css']
+  styleUrls: ['../../app.component.css']
 })
 export class AddMeetingComponent implements OnInit {
 
