@@ -38,9 +38,14 @@ import { EditMeetingComponent } from './meetings/edit-meeting/edit-meeting.compo
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
+      { path: '/home', component: HomeComponent, children: 
+        [
+          { path: ':id', component: DisplayComponent}
+        ]
+      },
+      { path: ':id/edit', component: EditMeetingComponent },
       { path: 'bishopric', component: BishopricComponent },
-      { path: 'add-meeting', component: AddMeetingComponent },
-      { path: 'edit-meeting', component: EditMeetingComponent }
+      { path: 'add-meeting', component: AddMeetingComponent }
     ])
   ],
   providers: [],
