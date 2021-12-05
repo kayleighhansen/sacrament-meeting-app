@@ -18,7 +18,7 @@ namespace SacramentMeetingApp.Migrations
             modelBuilder
                 .UseIdentityColumns()
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
-                .HasAnnotation("ProductVersion", "5.0.0");
+                .HasAnnotation("ProductVersion", "5.0.0"); 
 
             modelBuilder.Entity("SacramentMeeting.Models.Bishopric", b =>
                 {
