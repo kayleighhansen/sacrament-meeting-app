@@ -38,7 +38,7 @@ import { EditMeetingComponent } from './meetings/edit-meeting/edit-meeting.compo
     FormsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
-      { path: '/home', component: HomeComponent, children: 
+      { path: 'home', component: HomeComponent, children: 
         [
           { path: ':id', component: DisplayComponent}
         ]
