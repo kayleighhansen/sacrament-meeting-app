@@ -28,6 +28,7 @@
                     <input type="text" class="" id="closingPrayer" name="closingPrayer"
                         [ngModel]="meeting?.closingPrayer" #closingPrayerInput="ngModel" required>
                 </div>
+                
             </div>
         </section>
         <section class="form-section">
@@ -53,29 +54,82 @@
                         <option value="">---</option>
                     </select>
                 </div>
+                <div class="form-field">
+                    <label for="dismissalHymn">Dismissal Hymn <span class="required">*</span></label><br>
+                    <select type="number" class="" id="dismissalHymn" name="dismissalHymn" [ngModel]="meeting?.dismissalHymn"
+                        #dismissalHymnInput="ngModel" required>
+                        <option value="">---</option>
+                    </select>
+                </div>
             </div>
         </section>
         <section class="form-section">
             <div>
                 <div class="form-field">
-                    <label class="container">Fast Sunday Meeting <span class="required">*</span>
-                        <input type="checkbox" checked="checked" class="isFastSunday" #checkBox="ngModel" 
-                        [(ngModel)]="shown" name="checkBox">
+                    <label class="container"><b>*Not*</b> Fast Sunday Meeting <span class="required">*</span>
+                        <input type="checkbox" checked="checked" class="isFastSunday" #checkBox="ngModel"
+                            [(ngModel)]="shown" name="checkBox">
                         <span class="checkmark"></span>
                     </label>
                 </div>
                 <div class="fast-sunday" *ngIf="shown">
-                    <div class="form-field">
-                        <label for="speaker">Speaker</label><br>
-                        <input type="text" class="" id="speaker" name="speaker" [ngModel]="meeting?.speaker"
-                            #speakerInput="ngModel">
-                    </div>
-                    <div class="form-field">
-                        <label for="topic">Topic</label><br>
-                        <input type="text" class="" id="topic" name="topic" [ngModel]="meeting?.topic"
-                            #topicInput="ngModel">
-                    </div>
+                    <div class="speaker">
+                        <div>
+                            <div class="form-field">
+                                <label for="speaker">First Speaker</label><br>
+                                <input type="text" class="" id="speaker" name="speaker" [ngModel]="meeting?.speaker"
+                                    #speakerInput="ngModel">
+                            </div>
 
+                            <div class="form-field">
+                                <label for="topic">Topic</label><br>
+                                <input type="text" class="" id="topic" name="topic" [ngModel]="meeting?.topic"
+                                    #topicInput="ngModel">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="speaker">
+                        <div>
+                            <div class="form-field">
+                                <label for="speaker">Second Speaker</label><br>
+                                <input type="text" class="" id="speaker" name="speaker" [ngModel]="meeting?.speaker"
+                                    #speakerInput="ngModel">
+                            </div>
+                            <div class="form-field">
+                                <label for="topic">Topic</label><br>
+                                <input type="text" class="" id="topic" name="topic" [ngModel]="meeting?.topic"
+                                    #topicInput="ngModel">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="speaker">
+                        <div>
+                            <div class="form-field">
+                                <label for="speaker">Third Speaker</label><br>
+                                <input type="text" class="" id="speaker" name="speaker" [ngModel]="meeting?.speaker"
+                                    #speakerInput="ngModel">
+                            </div>
+                            <div class="form-field">
+                                <label for="topic">Topic</label><br>
+                                <input type="text" class="" id="topic" name="topic" [ngModel]="meeting?.topic"
+                                    #topicInput="ngModel">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="speaker">
+                        <div>
+                            <div class="form-field">
+                                <label for="speaker">Fourth Speaker</label><br>
+                                <input type="text" class="" id="speaker" name="speaker" [ngModel]="meeting?.speaker"
+                                    #speakerInput="ngModel">
+                            </div>
+                            <div class="form-field">
+                                <label for="topic">Topic</label><br>
+                                <input type="text" class="" id="topic" name="topic" [ngModel]="meeting?.topic"
+                                    #topicInput="ngModel">
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -85,20 +139,24 @@
                     <div class="form-field">
                         <label class="container">Special Music Number <span class="required">*</span>
                             <input type="checkbox" #musicCheckBox="ngModel" class="isMusicSunday"
-                            [(ngModel)]="showMusic" name="musicCheckBox">
+                                [(ngModel)]="showMusic" name="musicCheckBox">
                             <span class="checkmark"></span>
                         </label>
                     </div>
                     <div class="music-number" *ngIf="showMusic">
-                        <div class="form-field">
-                            <label for="musician">Musician/Group</label><br>
-                            <input type="text" class="" id="musician" name="musician" [ngModel]="meeting?.musician"
-                                #musicianInput="ngModel">
-                        </div>
-                        <div class="form-field">
-                            <label for="song">Song</label><br>
-                            <input type="text" class="" id="song" name="song" [ngModel]="meeting?.song"
-                                #songInput="ngModel">
+                        <div class="speaker">
+                            <div>
+                                <div class="form-field">
+                                    <label for="musician">Musician/Group</label><br>
+                                    <input type="text" class="" id="musician" name="musician"
+                                        [ngModel]="meeting?.musician" #musicianInput="ngModel">
+                                </div>
+                                <div class="form-field">
+                                    <label for="song">Song</label><br>
+                                    <input type="text" class="" id="song" name="song" [ngModel]="meeting?.song"
+                                        #songInput="ngModel">
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

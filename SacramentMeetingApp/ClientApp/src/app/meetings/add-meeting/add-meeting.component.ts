@@ -37,6 +37,7 @@ export class AddMeetingComponent implements OnInit {
     let openingHymn = document.getElementById("openingHymn");
     let sacramentHymn = document.getElementById("sacramentHymn");
     let closingHymn = document.getElementById("closingHymn");
+    let dismissalHymn = document.getElementById("dismissalHymn");
 
     this.http.get<Hymn[]>(hymnURL)
     .pipe(
@@ -77,6 +78,14 @@ export class AddMeetingComponent implements OnInit {
         option.text = hymn.songNumber + ", " + hymn.name;
 
         closingHymn.appendChild(option);
+      })
+
+      this.hymns.forEach((hymn) => {
+        var option = document.createElement("option");
+        option.value = hymn.id;
+        option.text = hymn.songNumber + ", " + hymn.name;
+
+        dismissalHymn.appendChild(option);
       })
 
       this.fetchHymnsEvent.next(this.hymns);

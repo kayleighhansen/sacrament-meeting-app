@@ -207,3 +207,11 @@ hr {
     height: 30px;
     width: 100%;
 }
+
+.speaker {
+    background-color: rgb(225, 225, 225);
+    padding: 10px;
+    margin-bottom: 10px;
+    display:flex;
+    justify-content: center;
+}
