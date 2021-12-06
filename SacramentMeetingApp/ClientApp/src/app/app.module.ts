@@ -28,6 +28,7 @@ import { BishopricEditComponent } from './bishopric/bishopric-edit/bishopric-edi
     BishopricItemComponent,
     BishopricListComponent,
     BishopricStartComponent,
+    BishopricEditComponent,
     DisplayComponent,
     EditMeetingComponent,
     FetchDataComponent,
