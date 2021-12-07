@@ -10,6 +10,7 @@
 // import { AddMeetingComponent } from "./meetings/add-meeting/add-meeting.component";
 // import { DisplayComponent } from "./meetings/display/display.component";
 // import { EditMeetingComponent } from "./meetings/edit-meeting/edit-meeting.component";
+// import { MeetingComponent } from "./meetings/meeting/meeting.component";
 
 // const appRoutes: Routes = [
 //     { path: '', component: HomeComponent, pathMatch: 'full' },
@@ -28,9 +29,17 @@
 //             { path: 'new', component: BishopricEditComponent },
 //             { path: ':id', component: BishopricDetailComponent },
 //             { path: ':id/edit', component: BishopricEditComponent },
-
 //         ]
 //     },
+//     // {
+//     //     path: 'meeting', component: MeetingComponent, children: [
+//     //         { path: 'add', component: AddMeetingComponent },
+//     //         // {path: ':id', component: } //Which component goes here? Display?
+//     //         { path: ':id/edit', component: EditMeetingComponent },
+//     //         { path: 'display', component: DisplayComponent },
+
+//     //     ]
+//     // }
 // ]
 
 // @NgModule({
