@@ -45,15 +45,14 @@ import { DropdownDirective } from './shared/dropdown.directive';
     FormsModule,
     // AppRoutingModule, //Leave this commented out while I work out some bugs
     RouterModule.forRoot([
-      { path: '', component: HomeComponent, pathMatch: 'full' },
+      { path: '', redirectTo: '/home', pathMatch: 'full' },
       {
-        path: '', component: HomeComponent, children:
-          [
-            { path: ':id', component: DisplayComponent }
-          ]
+        path: 'home', component: HomeComponent, children:[
+            { path: ':id', component: DisplayComponent }]
       },
       { path: 'add', component: AddMeetingComponent },
       { path: ':id/edit', component: EditMeetingComponent },
+
       {
         path: 'bishopric', component: BishopricComponent, children: [
           { path: '', component: BishopricStartComponent },
