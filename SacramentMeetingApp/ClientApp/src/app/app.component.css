@@ -215,3 +215,7 @@ hr {
     display:flex;
     justify-content: center;
 }
+
+input {
+    width: 100%;
+}

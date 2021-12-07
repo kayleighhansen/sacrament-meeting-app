@@ -47,11 +47,12 @@ import { AppRoutingModule } from './app-routing.module';
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       {
-        path: 'home', component: HomeComponent, children:
+        path: '', component: HomeComponent, children:
           [
             { path: ':id', component: DisplayComponent }
           ]
       },
+      { path: 'add', component: AddMeetingComponent },
       { path: ':id/edit', component: EditMeetingComponent },
       {
         path: 'bishopric', component: BishopricComponent, children: [
@@ -60,8 +61,7 @@ import { AppRoutingModule } from './app-routing.module';
           { path: ':id', component: BishopricDetailComponent },
           { path: ':id/edit', component: BishopricEditComponent },
         ]
-      },
-      { path: 'add-meeting', component: AddMeetingComponent }
+      }
     ])
   ],
   providers: [],
