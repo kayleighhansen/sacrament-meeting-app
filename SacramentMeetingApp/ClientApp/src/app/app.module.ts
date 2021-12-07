@@ -19,7 +19,7 @@ import { EditMeetingComponent } from './meetings/edit-meeting/edit-meeting.compo
 import { BishopricItemComponent } from './bishopric/bishopric-list/bishopric-item/bishopric-item.component';
 import { BishopricEditComponent } from './bishopric/bishopric-edit/bishopric-edit.component';
 import { DropdownDirective } from './shared/dropdown.directive';
-import { AppRoutingModule } from './app-routing.module';
+// import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -43,7 +43,7 @@ import { AppRoutingModule } from './app-routing.module';
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
-    AppRoutingModule, //Leave this commented out while I work out some bugs
+    // AppRoutingModule, //Leave this commented out while I work out some bugs
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       {
