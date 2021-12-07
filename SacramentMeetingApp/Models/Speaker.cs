@@ -5,7 +5,6 @@ namespace SacramentMeeting.Models
         public string Name { get; set; }
         public string Prefix { get; set; }
         public string Topic { get; set; }
-
         public int MeetingId { get; set; }
     }
 }

@@ -46,7 +46,7 @@ namespace SacramentMeetingApp.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> PutMeeting(long id, Meeting meeting)
         {
-            if (id != meeting.Id)
+            if (id != meeting.MeetingId)
             {
                 return BadRequest();
             }
@@ -80,7 +80,7 @@ namespace SacramentMeetingApp.Controllers
             _context.Meeting.Add(meeting);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetMeeting", new { id = meeting.Id }, meeting);
+            return CreatedAtAction("GetMeeting", new { id = meeting.MeetingId }, meeting);
         }
 
         // DELETE: api/SacramentMeeting/5
@@ -101,7 +101,7 @@ namespace SacramentMeetingApp.Controllers
 
         private bool MeetingExists(long id)
         {
-            return _context.Meeting.Any(e => e.Id == id);
+            return _context.Meeting.Any(e => e.MeetingId == id);
         }
     }
 }

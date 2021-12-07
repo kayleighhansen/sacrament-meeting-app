@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace SacramentMeetingApp.Migrations
 {
     [DbContext(typeof(SacramentMeetingContext))]
-    [Migration("20211207071700_DatabaseUpdate")]
-    partial class DatabaseUpdate
+    [Migration("20211207210629_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -43,39 +43,39 @@ namespace SacramentMeetingApp.Migrations
 
             modelBuilder.Entity("SacramentMeeting.Models.Meeting", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("MeetingId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
+                        .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<int>("ClosingHymnNumber")
+                    b.Property<int>("ClosingHymnNumberId")
                         .HasColumnType("int");
 
                     b.Property<string>("ClosingPrayer")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long?>("ConductorId")
-                        .HasColumnType("bigint");
+                    b.Property<int>("ConductorId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Date")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("DismissalHymnNumber")
+                    b.Property<int>("DismissalHymnNumberId")
                         .HasColumnType("int");
 
-                    b.Property<int>("IntermediateHymnNumber")
+                    b.Property<int?>("IntermediateHymnNumberId")
                         .HasColumnType("int");
 
-                    b.Property<int>("OpeningHymnNumber")
+                    b.Property<int>("OpeningHymnNumberId")
                         .HasColumnType("int");
 
                     b.Property<string>("OpeningPrayer")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<long?>("PresidingId")
-                        .HasColumnType("bigint");
+                    b.Property<int>("PresidingId")
+                        .HasColumnType("int");
 
-                    b.Property<int>("SacramentHymnNumber")
+                    b.Property<int>("SacramentHymnNumberId")
                         .HasColumnType("int");
 
                     b.Property<string>("SpecialMusicNumberMusician")
@@ -90,24 +90,20 @@ namespace SacramentMeetingApp.Migrations
                     b.Property<bool>("isSpecialMusicNumber")
                         .HasColumnType("bit");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("ConductorId");
-
-                    b.HasIndex("PresidingId");
+                    b.HasKey("MeetingId");
 
                     b.ToTable("Meeting");
                 });
 
             modelBuilder.Entity("SacramentMeeting.Models.Speaker", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<long>("SpeakerId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
                         .UseIdentityColumn();
 
-                    b.Property<long?>("MeetingId")
-                        .HasColumnType("bigint");
+                    b.Property<int>("MeetingId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -118,33 +114,20 @@ namespace SacramentMeetingApp.Migrations
                     b.Property<string>("Topic")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("SpeakerId");
 
                     b.HasIndex("MeetingId");
 
                     b.ToTable("Speaker");
                 });
 
-            modelBuilder.Entity("SacramentMeeting.Models.Meeting", b =>
-                {
-                    b.HasOne("SacramentMeeting.Models.Bishopric", "Conductor")
-                        .WithMany()
-                        .HasForeignKey("ConductorId");
-
-                    b.HasOne("SacramentMeeting.Models.Bishopric", "Presiding")
-                        .WithMany()
-                        .HasForeignKey("PresidingId");
-
-                    b.Navigation("Conductor");
-
-                    b.Navigation("Presiding");
-                });
-
             modelBuilder.Entity("SacramentMeeting.Models.Speaker", b =>
                 {
                     b.HasOne("SacramentMeeting.Models.Meeting", null)
                         .WithMany("Speakers")
-                        .HasForeignKey("MeetingId");
+                        .HasForeignKey("MeetingId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("SacramentMeeting.Models.Meeting", b =>
