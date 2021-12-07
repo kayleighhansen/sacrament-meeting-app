@@ -4,7 +4,7 @@ namespace SacramentMeeting.Models
 {
     public class Meeting
     {
-        public long Id { get; set; }
+        public long MeetingId { get; set; }
         public string Date { get; set; }
 
         // People
@@ -17,8 +17,12 @@ namespace SacramentMeeting.Models
         public string ClosingPrayer { get; set; }
 
         // Hymns
-        public int OpeningHymnNumber { get; set; }
-        public int ClosingHymnNumber { get; set; }
+        public int OpeningHymnNumberId { get; set; }
+
+        public Hymn OpeningHymnNumber { get; set;}
+        public int ClosingHymnNumberId { get; set; }
+
+        public Hymn ClosingHymnNumber { get; set; }
         public int SacramentHymnNumber { get; set; }
         public int IntermediateHymnNumber { get; set; }
         public int DismissalHymnNumber { get; set; }

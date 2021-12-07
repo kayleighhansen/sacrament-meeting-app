@@ -34,7 +34,7 @@ export class DisplayComponent implements OnInit {
         
     this.fetchMeetingsSubscription = this.meetingService.fetchMeetingsEvent.subscribe((result) => {
       result.forEach((x) => {
-        if (x.id == id) {
+        if (x.id == parseInt(id)) {
           this.meeting = x ;
         } 
       }

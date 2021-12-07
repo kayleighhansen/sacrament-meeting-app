@@ -31,16 +31,16 @@ export class Meeting {
     public song : string;
 
 
-    constructor(id: string, 
+    constructor(id: number, 
                 date: string, 
-                presidingId: string,
-                conductingId: string,
+                presidingId: number,
+                conductingId: number,
                 openingPrayer: string,
                 closingPrayer: string,
-                openingHymn: Hymn,
-                sacramentHymn: Hymn,
-                closingHymn: Hymn,
-                dismissalHymn: Hymn,
+                openingHymn: number,
+                sacramentHymn: number,
+                closingHymn: number,
+                dismissalHymn: number,
                 speakers: Speaker[],
                 isFastSunday: boolean,
                 isSpecialMusic: boolean,
