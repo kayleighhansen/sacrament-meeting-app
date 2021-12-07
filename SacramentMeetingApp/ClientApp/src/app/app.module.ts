@@ -18,6 +18,8 @@ import { AddMeetingComponent } from './meetings/add-meeting/add-meeting.componen
 import { EditMeetingComponent } from './meetings/edit-meeting/edit-meeting.component';
 import { BishopricItemComponent } from './bishopric/bishopric-list/bishopric-item/bishopric-item.component';
 import { BishopricEditComponent } from './bishopric/bishopric-edit/bishopric-edit.component';
+import { DropdownDirective } from './shared/dropdown.directive';
+// import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,7 @@ import { BishopricEditComponent } from './bishopric/bishopric-edit/bishopric-edi
     BishopricStartComponent,
     BishopricEditComponent,
     DisplayComponent,
+    DropdownDirective,
     EditMeetingComponent,
     FetchDataComponent,
     HomeComponent,
@@ -40,6 +43,7 @@ import { BishopricEditComponent } from './bishopric/bishopric-edit/bishopric-edi
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
+    // AppRoutingModule, //Leave this commented out while I work out some bugs
     RouterModule.forRoot([
       { path: '', redirectTo: '/home', pathMatch: 'full' },
       {

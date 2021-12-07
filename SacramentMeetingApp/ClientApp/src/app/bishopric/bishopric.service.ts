@@ -34,4 +34,16 @@ export class BishopricService {
   getBishoprics() {
     return this.bishoprics.slice();
   }
+
+  getBishopric(index: number) {
+    return this.bishoprics[index]
+  }
+
+  addBishopric(bishopric: Bishopric) {
+    this.bishoprics.push(bishopric);
+    //this.ingredientsChanged.emit(this.ingredients.slice());
+    //Updates the list of bishops once a new one has been added
+  }
+
+
 }
