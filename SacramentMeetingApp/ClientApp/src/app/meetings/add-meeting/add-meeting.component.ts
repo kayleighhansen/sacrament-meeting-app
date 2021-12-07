@@ -8,6 +8,7 @@ import { Hymn } from '../hymn.model';
 import { map } from 'rxjs/operators';
 import { Subject, Subscription } from 'rxjs';
 import { NgForm } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 
 @Component({
@@ -36,14 +37,19 @@ export class AddMeetingComponent implements OnInit {
 
   fetchBishopricSubscription: Subscription;
 
-  closingHymn = document.getElementById("closingHymn");
-
+  projectForm: FormGroup;
 
   constructor(private http: HttpClient, private meetingService: MeetingService) { }
 
   ngOnInit() {
     this.getHymnList();
     this.getBishopricList();
+
+    this.projectForm = new FormGroup({
+      'speaker': new FormControl(null),
+      'topic': new FormControl(null),
+    });
+
   }
 
   getHymnList() {

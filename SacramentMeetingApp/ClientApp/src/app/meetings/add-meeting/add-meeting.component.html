@@ -85,7 +85,7 @@
                     <div class="speaker">
                         <div>
                             <div class="form-field">
-                                <label for="speaker">First Speaker</label><br>
+                                <label for="speaker">Speaker</label><br>
                                 <input type="text" class="" id="speaker" name="speaker" [ngModel]="meeting?.speaker"
                                     #speakerInput="ngModel">
                             </div>
@@ -96,48 +96,10 @@
                                     #topicInput="ngModel">
                             </div>
                         </div>
+
                     </div>
-                    <div class="speaker">
-                        <div>
-                            <div class="form-field">
-                                <label for="speaker">Second Speaker</label><br>
-                                <input type="text" class="" id="speaker" name="speaker" [ngModel]="meeting?.speaker"
-                                    #speakerInput="ngModel">
-                            </div>
-                            <div class="form-field">
-                                <label for="topic">Topic</label><br>
-                                <input type="text" class="" id="topic" name="topic" [ngModel]="meeting?.topic"
-                                    #topicInput="ngModel">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="speaker">
-                        <div>
-                            <div class="form-field">
-                                <label for="speaker">Third Speaker</label><br>
-                                <input type="text" class="" id="speaker" name="speaker" [ngModel]="meeting?.speaker"
-                                    #speakerInput="ngModel">
-                            </div>
-                            <div class="form-field">
-                                <label for="topic">Topic</label><br>
-                                <input type="text" class="" id="topic" name="topic" [ngModel]="meeting?.topic"
-                                    #topicInput="ngModel">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="speaker">
-                        <div>
-                            <div class="form-field">
-                                <label for="speaker">Fourth Speaker</label><br>
-                                <input type="text" class="" id="speaker" name="speaker" [ngModel]="meeting?.speaker"
-                                    #speakerInput="ngModel">
-                            </div>
-                            <div class="form-field">
-                                <label for="topic">Topic</label><br>
-                                <input type="text" class="" id="topic" name="topic" [ngModel]="meeting?.topic"
-                                    #topicInput="ngModel">
-                            </div>
-                        </div>
+                    <div class="">
+                        <button type="button" class="btn btn-info">Add New Speaker</button>
                     </div>
                 </div>
             </div>
