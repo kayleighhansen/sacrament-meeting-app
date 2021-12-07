@@ -110,6 +110,11 @@ hr {
     height: 0;
     width: 0;
   }
+
+  .btn:not(:disabled):not(.disabled) {
+    cursor: pointer;
+    color: white;
+    }
   
   /* Create a custom checkbox */
   .checkmark {

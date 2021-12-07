@@ -51,7 +51,7 @@ import { DropdownDirective } from './shared/dropdown.directive';
             { path: ':id', component: DisplayComponent }]
       },
       { path: 'add', component: AddMeetingComponent },
-      { path: ':id/edit', component: EditMeetingComponent },
+      { path: 'home/:id/edit', component: EditMeetingComponent },
 
       {
         path: 'bishopric', component: BishopricComponent, children: [
