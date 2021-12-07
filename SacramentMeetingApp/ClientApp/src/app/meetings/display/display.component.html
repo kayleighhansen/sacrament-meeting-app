@@ -1,88 +1,89 @@
 <div class="display-heading">
     <p>Full Stack Ward</p>
-    <p>12-4-2021</p>
+    <p>{{ meeting.date }}</p>
 </div>
 
 <div class="responsibility">
     <p>Presiding</p>
     <hr>
-    <p class="meeting-item-data">Bishopric Name</p>
+    <p class="meeting-item-data"></p>
 </div>
 
 <div class="responsibility">
     <p>Conducting</p>
     <hr>
-    <p class="meeting-item-data">Bishopric Name</p>
+    <p class="meeting-item-data"></p>
 </div>
 
 <div class="responsibility">
     <p>Opening Hymn</p>
     <hr>
-    <p class="meeting-item-data">##<br><span class="italics">"The Name of the Hymn"</span></p>
+    <p class="meeting-item-data">##<br><span class="italics">""</span></p>
 </div>
 
 <div class="responsibility">
-    <p>Prayer</p>
+    <p>Opening Prayer</p>
     <hr>
-    <p class="meeting-item-data">Speaker Name</p>
+    <p class="meeting-item-data">{{ meeting.openingPrayer }}</p>
 </div>
 
 <div class="responsibility">
     <p>Sacrament Hymn</p>
     <hr>
-    <p class="meeting-item-data">##<br><span class="italics">"The Name of the Hymn"</span></p>
+    <p class="meeting-item-data">##<br><span class="italics">""</span></p>
 </div>
 
 <div class="special-activity">
     <p class="center">Passing of the Sacrament By The Aaronic Priesthood</p>
 </div>
+<br>
 
 <div class="responsibility">
     <p>Topic</p>
     <hr>
-    <p class="meeting-item-data">Speaker Name</p>
+    <p class="meeting-item-data"></p>
 </div>
 
 <div class="responsibility">
     <p>Topic</p>
     <hr>
-    <p class="meeting-item-data">Speaker Name</p>
+    <p class="meeting-item-data"></p>
+</div>
+
+<div class="special-activity" *ngIf="meeting.isFastSunday == true">
+    <p class="center">""</p>
+    <p class="center">--</p>
+</div>
+
+<div class="responsibility" *ngIf="meeting.isFastSunday == false">
+    <p>Intermediate Hymn</p>
+    <hr>
+    <p class="meeting-item-data">##<br><span class="italics">""</span></p>
 </div>
 
 <div class="responsibility">
     <p>Topic</p>
     <hr>
-    <p class="meeting-item-data">Speaker Name</p>
-</div>
-
-<div class="special-activity">
-    <p class="center">Special Musical Number</p>
-    <p class="center">Group Name</p>
-</div>
-
-<div class="responsibility">
-    <p>Topic</p>
-    <hr>
-    <p class="meeting-item-data">Speaker Name</p>
+    <p class="meeting-item-data"></p>
 </div>
 
 <div class="responsibility">
     <p>Opening Hymn</p>
     <hr>
-    <p class="meeting-item-data">##<br><span class="italics">"The Name of the Hymn"</span></p>
+    <p class="meeting-item-data">##<br><span class="italics">""</span></p>
 </div>
 
 <div class="responsibility">
-    <p>Prayer</p>
+    <p>Closing Prayer</p>
     <hr>
-    <p class="meeting-item-data">Speaker Name</p>
+    <p class="meeting-item-data">{{meeting.closingPrayer}}</p>
 </div>
 
 <div class="responsibility">
     <p>Dismissal Hymn</p>
     <hr>
-    <p class="meeting-item-data">##<br><span class="italics">"The Name of the Hymn"</span></p>
-</div>
+    <p class="meeting-item-data">##<br><span class="italics">""</span></p>
+</div><br><br>
 
 <div class="btn-container">
     <button class="btn btn-info" routerLink="edit-meeting">Edit Meeting</button>

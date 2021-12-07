@@ -17,14 +17,16 @@ namespace SacramentMeeting.Models
         public string ClosingPrayer { get; set; }
 
         // Hymns
-        public Hymn OpeningHymn { get; set; }
-        public Hymn ClosingHymn { get; set; }
-        public Hymn SacramentHymn { get; set; }
-        public Hymn DismissalHymn { get; set; }
+        public int OpeningHymnNumber { get; set; }
+        public int ClosingHymnNumber { get; set; }
+        public int SacramentHymnNumber { get; set; }
+        public int IntermediateHymnNumber { get; set; }
+        public int DismissalHymnNumber { get; set; }
 
         // Special Stuff
         public bool isFastSunday { get; set; }
         public bool isSpecialMusicNumber { get; set; }
-        public bool SpecialMusicNumberName { get; set; }
+        public string SpecialMusicNumberName { get; set; }
+        public string SpecialMusicNumberMusician { get; set; }
     }
 }
