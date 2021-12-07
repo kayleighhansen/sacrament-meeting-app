@@ -8,19 +8,19 @@ export class Meeting {
       throw new Error('Method not implemented.');
     }
 
-    public id : string;
+    public id : number;
     public date : string;
     
-    public presidingId : string;
-    public conductingId : string;
+    public presidingId : number;
+    public conductingId : number;
 
     public openingPrayer : string;
     public closingPrayer : string;
 
-    public openingHymn : Hymn;
-    public sacramentHymn : Hymn;
-    public closingHymn : Hymn;
-    public dismissalHymn : Hymn;
+    public openingHymn : number;
+    public sacramentHymn : number;
+    public closingHymn : number;
+    public dismissalHymn : number;
 
     public speakers : Speaker[];
 

@@ -3,11 +3,11 @@ export class Hymn {
       throw new Error('Method not implemented.');
     }
 
-    public id : string;
+    public id : number;
     public name : string;
     public songNumber : string;
 
-    constructor(id: string, 
+    constructor(id: number, 
                 name: string, 
                 songNumber: string) {
         this.id = id;
