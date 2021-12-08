@@ -7,7 +7,7 @@ import { Bishopric } from 'src/app/bishopric/bishopric.model';
 import { Hymn } from '../hymn.model';
 import { map } from 'rxjs/operators';
 import { Subject, Subscription } from 'rxjs';
-import { NgForm } from '@angular/forms';
+import { FormArray, NgForm } from '@angular/forms';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 
@@ -37,7 +37,7 @@ export class AddMeetingComponent implements OnInit {
 
   fetchBishopricSubscription: Subscription;
 
-  projectForm: FormGroup;
+  addMeetingForm: FormGroup;
 
   constructor(private http: HttpClient, private meetingService: MeetingService) { }
 
@@ -45,10 +45,26 @@ export class AddMeetingComponent implements OnInit {
     this.getHymnList();
     this.getBishopricList();
 
-    this.projectForm = new FormGroup({
+    this.addMeetingForm = new FormGroup({
+      'date': new FormControl(null, Validators.required),
+      'presidingId': new FormControl(null, Validators.required),
+      'conductingId': new FormControl(null, Validators.required),
+      'openingPrayer': new FormControl(null, Validators.required),
+      'closingPrayer': new FormControl(null, Validators.required),
+      'openingHymn': new FormControl(null, Validators.required),
+      'sacramentHymn': new FormControl(null, Validators.required),
+      'intermediateHymn': new FormControl(null),
+      'closingHymn': new FormControl(null, Validators.required),
+      'dismissalHymn': new FormControl(null, Validators.required),
+      'isFastSunday': new FormControl(null, Validators.required),
       'speaker': new FormControl(null),
       'topic': new FormControl(null),
+      'isMusicSunday': new FormControl(null, Validators.required),
+      'musician': new FormControl(null),
+      'song': new FormControl(null)
     });
+
+    console.log(this.addMeetingForm.value);
 
   }
 
@@ -57,6 +73,7 @@ export class AddMeetingComponent implements OnInit {
 
     let openingHymn = document.getElementById("openingHymn");
     let sacramentHymn = document.getElementById("sacramentHymn");
+    let intermediateHymn = document.getElementById("intermediateHymn");
     let closingHymn = document.getElementById("closingHymn");
     let dismissalHymn = document.getElementById("dismissalHymn");
 
@@ -97,6 +114,14 @@ export class AddMeetingComponent implements OnInit {
         option.text = hymn.songNumber + ", " + hymn.name;
 
         closingHymn.appendChild(option);
+      })
+
+      this.hymns.forEach((hymn) => {
+        var option = document.createElement("option");
+        option.value = hymn.id.toString();
+        option.text = hymn.songNumber + ", " + hymn.name;
+
+        intermediateHymn.appendChild(option);
       })
 
       this.hymns.forEach((hymn) => {
@@ -146,47 +171,12 @@ export class AddMeetingComponent implements OnInit {
 
   }
 
-  onSubmit(form: NgForm) {
-
-    const isFastSunday = document.getElementById("isFastSunday") as HTMLInputElement;
-    if(isFastSunday.checked) {
-      this.fastSunday = false;
-    }
-    else {
-      this.fastSunday = true;
-    };
-
-    const isSpecialMusic = document.getElementById("musicCheckBox") as HTMLInputElement;
-    if(isSpecialMusic.checked) {
-      this.specialMusic = true;
-    }
-    else {
-      this.specialMusic = false;
-    };
-
-    const value = form.value;
-
-    const newContact = new Meeting(
-      null,
-      new Date().toDateString(),
-      value.presidingId,
-      value.conductingId,
-      value.openingPrayer,
-      value.closingPrayer,
-      value.openingHymn,
-      value.sacramentHymn,
-      value.closingHymn,
-      value.dismissalHymn,
-      value.speakers,
-      this.fastSunday,
-      this.specialMusic,
-      value.musician,
-      value.song
-    );
-
-    console.log(newContact);
-
-    // http post to the right url
+  onSubmit() {
+    console.log(this.addMeetingForm);
   }
 
+  onAddSpeaker() {
+    const speaker = new FormControl(null);
+    (<FormArray>this.addMeetingForm.get('speakers')).push(speaker);
+  }
 }
