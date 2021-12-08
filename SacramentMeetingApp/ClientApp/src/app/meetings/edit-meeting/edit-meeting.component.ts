@@ -48,7 +48,7 @@ export class EditMeetingComponent implements OnInit {
 
       this.hymns.forEach((hymn) => {
         var option = document.createElement("option");
-        option.value = hymn.id;
+        option.value = hymn.id.toString();
         option.text = hymn.songNumber + ", " + hymn.name;
 
         openingHymn.appendChild(option);
@@ -56,7 +56,7 @@ export class EditMeetingComponent implements OnInit {
 
       this.hymns.forEach((hymn) => {
         var option = document.createElement("option");
-        option.value = hymn.id;
+        option.value = hymn.id.toString();
         option.text = hymn.songNumber + ", " + hymn.name;
 
         sacramentHymn.appendChild(option);
@@ -64,7 +64,7 @@ export class EditMeetingComponent implements OnInit {
 
       this.hymns.forEach((hymn) => {
         var option = document.createElement("option");
-        option.value = hymn.id;
+        option.value = hymn.id.toString();
         option.text = hymn.songNumber + ", " + hymn.name;
 
         closingHymn.appendChild(option);

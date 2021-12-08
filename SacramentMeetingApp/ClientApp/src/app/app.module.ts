@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
@@ -19,7 +19,6 @@ import { EditMeetingComponent } from './meetings/edit-meeting/edit-meeting.compo
 import { BishopricItemComponent } from './bishopric/bishopric-list/bishopric-item/bishopric-item.component';
 import { BishopricEditComponent } from './bishopric/bishopric-edit/bishopric-edit.component';
 import { DropdownDirective } from './shared/dropdown.directive';
-// import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
@@ -43,7 +42,7 @@ import { DropdownDirective } from './shared/dropdown.directive';
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
-    // AppRoutingModule, //Leave this commented out while I work out some bugs
+    ReactiveFormsModule,
     RouterModule.forRoot([
       { path: '', redirectTo: '/home', pathMatch: 'full' },
       {
