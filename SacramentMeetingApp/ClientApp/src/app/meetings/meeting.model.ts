@@ -11,8 +11,8 @@ export class Meeting {
     public id : number;
     public date : string;
     
-    public presidingId : number;
-    public conductingId : number;
+    public presidingId : Bishopric;
+    public conductingId : Bishopric;
 
     public openingPrayer : string;
     public closingPrayer : string;
@@ -33,8 +33,8 @@ export class Meeting {
 
     constructor(id: number, 
                 date: string, 
-                presidingId: number,
-                conductingId: number,
+                presidingId: Bishopric,
+                conductingId: Bishopric,
                 openingPrayer: string,
                 closingPrayer: string,
                 openingHymn: number,

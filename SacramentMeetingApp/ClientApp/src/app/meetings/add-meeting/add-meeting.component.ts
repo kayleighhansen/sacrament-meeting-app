@@ -57,14 +57,14 @@ export class AddMeetingComponent implements OnInit {
       'closingHymn': new FormControl(null, Validators.required),
       'dismissalHymn': new FormControl(null, Validators.required),
       'isFastSunday': new FormControl(null, Validators.required),
-      'speaker': new FormControl(null),
-      'topic': new FormControl(null),
+      'speakers': new FormArray([]),
+
       'isMusicSunday': new FormControl(null, Validators.required),
       'musician': new FormControl(null),
       'song': new FormControl(null)
     });
 
-    console.log(this.addMeetingForm.value);
+    console.log(this.addMeetingForm.get('newSpeaker'));
 
   }
 
@@ -176,7 +176,16 @@ export class AddMeetingComponent implements OnInit {
   }
 
   onAddSpeaker() {
-    const speaker = new FormControl(null);
-    (<FormArray>this.addMeetingForm.get('speakers')).push(speaker);
+    const label = document.createElement('label');
+    label.innerHTML = "Speaker"
+    const newSpeaker = new FormGroup({
+      speaker: new FormControl(),
+      topic: new FormControl()
+    });
+
+    console.log(newSpeaker.value);
+
+    (<FormArray>this.addMeetingForm.get('speakers')).push(newSpeaker);
+
   }
 }

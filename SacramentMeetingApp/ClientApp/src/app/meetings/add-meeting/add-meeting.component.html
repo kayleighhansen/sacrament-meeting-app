@@ -78,19 +78,19 @@
                     </label>
                 </div>
                 <div class="fast-sunday">
-                    <div class="speaker">
-                        <div>
-                            <div class="form-field">
-                                <label for="speaker">Speaker</label><br>
-                                <input type="text" class="" id="speaker" formControlName="speaker">
-                            </div>
-
-                            <div class="form-field">
-                                <label for="topic">Topic</label><br>
-                                <input type="text" class="topic" id="topic" formControlName="topic">
+                    <div class="form-group" formArrayName="speakers" *ngFor="let speakerControl of addMeetingForm.get('speakers').controls; let i = index">
+                        <div class="form-field speaker" [formGroupName]="i">
+                            <div>
+                                <div class="form-field">
+                                    <label for="">Speaker</label>
+                                    <input type="text" class="form-control" [formControlName]="speaker">
+                                </div>
+                                <div class="form-field">
+                                    <label for="">Topic</label>
+                                    <input type="text" class="form-control" [formControlName] ="topic">
+                                </div>
                             </div>
                         </div>
-
                     </div>
                     <div class="">
                         <button type="button" class="btn btn-info" (click)="onAddSpeaker()">Add New Speaker</button>
@@ -112,11 +112,11 @@
                             <div>
                                 <div class="form-field">
                                     <label for="musician">Musician/Group</label><br>
-                                    <input type="text" class="musician" id="musician" formControlName="musician">
+                                    <input type="text" class="musician form-control" id="musician" formControlName="musician">
                                 </div>
                                 <div class="form-field">
                                     <label for="song">Song</label><br>
-                                    <input type="text" class="song" id="song" name="song" formControlName="song">
+                                    <input type="text" class="song form-control" id="song" name="song" formControlName="song">
                                 </div>
                             </div>
                         </div>

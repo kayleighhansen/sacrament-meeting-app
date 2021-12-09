@@ -4,71 +4,97 @@
     <a href="./">Back to Meetings</a>
 </div>
 
-<form>
+<form [formGroup]="editMeetingForm" (ngSubmit)="onSubmit()">
     <div class="add-meeting-form">
         <section class="form-section">
             <div>
                 <div class="form-field">
                     <label for="date">Date <span class="required">*</span></label><br>
-                    <input type="date" class="" id="date" name="date" [ngModel]="meeting?.date" #dateInput="ngModel"
-                        required>
+                    <input type="date" class="date" id="date" formControlName="date" >
                 </div>
                 <div class="form-field">
                     <label for="presiding">Presiding <span class="required">*</span></label><br>
-                    <input type="presiding" class="" id="presiding" name="presiding" [ngModel]="meeting?.presiding"
-                        #presidingInput="ngModel" required>
+                    <select type="text" class="presidingId" id="presidingId" formControlName="presidingId">
+                        <option value="">--</option>
+                    </select>
+                </div>
+                <div class="form-field">
+                    <label for="presiding">Conducting <span class="required">*</span></label><br>
+                    <select type="text" class="conductingId" id="conductingId" formControlName="conductingId">
+                        <option value="">--</option>
+                    </select>
                 </div>
                 <div class="form-field">
                     <label for="openingPrayer">Opening Prayer <span class="required">*</span></label><br>
-                    <input type="text" class="" id="openingPrayer" name="openingPrayer"
-                        [ngModel]="meeting?.openingPrayer" #openingPrayerInput="ngModel" required>
+                    <input type="text" class="openingPrayer" id="openingPrayer" formControlName="openingPrayer">
                 </div>
                 <div class="form-field">
                     <label for="closingPrayer">Closing Prayer <span class="required">*</span></label><br>
-                    <input type="text" class="" id="closingPrayer" name="closingPrayer"
-                        [ngModel]="meeting?.closingPrayer" #closingPrayerInput="ngModel" required>
+                    <input type="text" class="closingPrayer" id="closingPrayer" formControlName="closingPrayer">
                 </div>
+                
             </div>
         </section>
         <section class="form-section">
             <div>
                 <div class="form-field">
                     <label for="openingHymn">Opening Hymn <span class="required">*</span></label><br>
-                    <input type="number" class="" id="openingHymn" name="openingHymn" [ngModel]="meeting?.openingHymn"
-                        #openingHymnInput="ngModel" required>
+                    <select type="number" class="openingHymn" id="openingHymn" formControlName="openingHymn">
+                        <option value="">---</option>
+                    </select>
                 </div>
                 <div class="form-field">
                     <label for="sacramentHymn">Sacrament Hymn <span class="required">*</span></label><br>
-                    <input type="number" class="" id="sacramentHymn" name="sacramentHymn"
-                        [ngModel]="meeting?.sacramentHymn" #sacramentHymnInput="ngModel" required>
+                    <select type="number" class="sacramentHymn" id="sacramentHymn" formControlName="sacramentHymn">
+                        <option value="">---</option>
+                    </select>
+                </div>
+                <div class="form-field">
+                    <label for="intermediateHymn">Intermediate Hymn</label><br>
+                    <select type="number" class="intermediateHymn" id="intermediateHymn" formControlName="intermediateHymn">
+                        <option value="">---</option>
+                    </select>
                 </div>
                 <div class="form-field">
                     <label for="closingHymn">Closing Hymn <span class="required">*</span></label><br>
-                    <input type="number" class="" id="closingHymn" name="closingHymn" [ngModel]="meeting?.closingHymn"
-                        #closingHymnHymnInput="ngModel" required>
+                    <select type="number" class="closingHymn" id="closingHymn" formControlName="closingHymn">
+                        <option value="">---</option>
+                    </select>
+                </div>
+                <div class="form-field">
+                    <label for="dismissalHymn">Dismissal Hymn <span class="required">*</span></label><br>
+                    <select type="number" class="dismissalHymn" id="dismissalHymn" formControlName="dismissalHymn">
+                        <option value="">---</option>
+                    </select>
                 </div>
             </div>
         </section>
         <section class="form-section">
             <div>
                 <div class="form-field">
-                    <label class="container">Fast Sunday Meeting <span class="required">*</span>
-                        <input type="checkbox" checked="checked" required>
+                    <label class="container"><b>*Not*</b> Fast Sunday Meeting <span class="required">*</span>
+                        <input type="checkbox" id="isFastSunday" class="isFastSunday" formControlName="isFastSunday">
                         <span class="checkmark"></span>
                     </label>
                 </div>
-                <div class="not-fast-sunday">
-                    <div class="form-field">
-                        <label for="speaker">Speaker</label><br>
-                        <input type="text" class="" id="speaker" name="speaker" [ngModel]="meeting?.speaker"
-                            #speakerInput="ngModel">
+                <div class="fast-sunday">
+                    <div class="form-group" formArrayName="speakers" *ngFor="let speakerControl of editMeetingForm.get('speakers').controls; let i = index">
+                        <div class="form-field speaker" [formGroupName]="i">
+                            <div>
+                                <div class="form-field">
+                                    <label for="">Speaker</label>
+                                    <input type="text" class="form-control" [formControlName]="speaker">
+                                </div>
+                                <div class="form-field">
+                                    <label for="">Topic</label>
+                                    <input type="text" class="form-control" [formControlName] ="topic">
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="form-field">
-                        <label for="topic">Topic</label><br>
-                        <input type="text" class="" id="topic" name="topic" [ngModel]="meeting?.topic"
-                            #topicInput="ngModel">
+                    <div class="">
+                        <button type="button" class="btn btn-info" (click)="onAddSpeaker()">Add New Speaker</button>
                     </div>
-
                 </div>
             </div>
         </section>
@@ -77,20 +103,22 @@
                 <div class="form-field">
                     <div class="form-field">
                         <label class="container">Special Music Number <span class="required">*</span>
-                            <input type="checkbox" checked="checked" required>
+                            <input type="checkbox" class="isMusicSunday" id="isMusicSunday" formControlName="isMusicSunday">
                             <span class="checkmark"></span>
                         </label>
                     </div>
                     <div class="music-number">
-                        <div class="form-field">
-                            <label for="musician">Musician/Group</label><br>
-                            <input type="text" class="" id="musician" name="musician" [ngModel]="meeting?.musician"
-                                #musicianInput="ngModel">
-                        </div>
-                        <div class="form-field">
-                            <label for="song">Song</label><br>
-                            <input type="text" class="" id="song" name="song" [ngModel]="meeting?.song"
-                                #songInput="ngModel">
+                        <div class="speaker">
+                            <div>
+                                <div class="form-field">
+                                    <label for="musician">Musician/Group</label><br>
+                                    <input type="text" class="musician form-control" id="musician" formControlName="musician">
+                                </div>
+                                <div class="form-field">
+                                    <label for="song">Song</label><br>
+                                    <input type="text" class="song form-control" id="song" name="song" formControlName="song">
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -99,6 +127,6 @@
 
     </div>
     <section class="submit-btn">
-        <button type="button" class="btn btn-success">Save</button>
+        <button class="btn btn-success">Edit Meeting</button>
     </section>
 </form>
