@@ -5,21 +5,23 @@
     <div class="upcoming-meetings">
       <p class="meeting-type-title">Upcoming Meetings</p>
       <div class="upcoming-meeting-list">
-        <div class="meeting-item" [routerLink]="[meeting.id]" *ngFor="let meetingEl of meetings" >
-            <p>{{ meeting.date }}</p>
+        <div class="meeting-item" [routerLink]="[meeting.id]" *ngFor="let meetingEl of meetings">
+          <p>{{ meeting.date }}</p>
         </div>
       </div>
 
     </div>
-    
+
     <div class="past-meetings">
       <p class="meeting-type-title">Past Meetings</p>
       <div class="past-meeting-list">
-         
-      </div>
-        <div class="add-meeting-btn-container">
-            <a type="button" class="btn btn-success" href="./add"> + Add New Meeting</a>
+        <div class="meeting-item" [routerLink]="[meeting.id]" *ngFor="let meetingEl of meetings">
+          <p>{{ this.meeting.date }}</p>
         </div>
+      </div>
+      <div class="add-meeting-btn-container">
+        <a type="button" class="btn btn-success" href="./add"> + Add New Meeting</a>
+      </div>
     </div>
   </section>
 

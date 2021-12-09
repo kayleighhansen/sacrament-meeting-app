@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MeetingService } from '../meeting.service';
 import { Meeting } from '../meeting.model';
 import { Subscription } from 'rxjs';
+import { MOCKMEETINGS } from '../MOCKMEETINGS';
 
 @Component({
   selector: 'app-meeting',
@@ -18,15 +19,28 @@ export class MeetingComponent implements OnInit {
   constructor(private meetingService: MeetingService) { }
 
   ngOnInit() {
-    this.meetingService.fetchMeetings();
-    this.meetingChangeSub = this.meetingService.meetingListChanged.subscribe(
-      (meetings: Meeting[]) => {
-        this.meetings = meetings;
-        this.meetings.forEach((meeting) => {
-          this.meeting = meeting;
-        }); 
-      }
-    );
+
+    this.meetings = MOCKMEETINGS;
+    console.log(this.meetings);
+
+    this.meetings.forEach((meeting)=> {
+      this.meeting = meeting;
+      console.log(this.meeting);
+    })
+
+    // this.meetingService.fetchMeetings();
+
+    // this.meetingChangeSub = this.meetingService.meetingListChanged.subscribe(
+    //   (meetings: Meeting[]) => {
+    //     this.meetings = meetings;
+    //     this.meetings.forEach((meeting) => {
+    //       this.meeting = meeting;
+    //       console.log(this.meeting.date);
+    //     }); 
+    //   }
+    // );
+
+    
   }
 
   onSelected() {
