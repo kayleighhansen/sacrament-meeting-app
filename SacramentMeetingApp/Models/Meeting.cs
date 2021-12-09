@@ -52,7 +52,7 @@ namespace SacramentMeeting.Models
 
         public Hymn SacramentHymnNumber { get; set; }
 
-        public Hymn? IntermediateHymnNumber { get; set; }
+        // public Hymn? IntermediateHymnNumber { get; set; }
 
         public Hymn DismissalHymnNumber { get; set; }
 
