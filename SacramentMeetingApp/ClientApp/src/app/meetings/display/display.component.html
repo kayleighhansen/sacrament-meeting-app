@@ -6,19 +6,19 @@
 <div class="responsibility">
     <p>Presiding</p>
     <hr>
-    <p class="meeting-item-data"></p>
+    <p class="meeting-item-data">{{ meeting.presiding.name }}</p>
 </div>
 
 <div class="responsibility">
     <p>Conducting</p>
     <hr>
-    <p class="meeting-item-data"></p>
+    <p class="meeting-item-data">{{ meeting.conductor.name }}</p>
 </div>
 
 <div class="responsibility">
     <p>Opening Hymn</p>
     <hr>
-    <p class="meeting-item-data">##<br><span class="italics">""</span></p>
+    <p class="meeting-item-data">#{{ meeting.openingHymnNumber }}<br><span class="italics">""</span></p>
 </div>
 
 <div class="responsibility">
@@ -30,7 +30,7 @@
 <div class="responsibility">
     <p>Sacrament Hymn</p>
     <hr>
-    <p class="meeting-item-data">##<br><span class="italics">""</span></p>
+    <p class="meeting-item-data">#{{ meeting.sacramentHymnNumber }}<br><span class="italics">""</span></p>
 </div>
 
 <div class="special-activity">
@@ -44,33 +44,34 @@
     <p class="meeting-item-data"></p>
 </div>
 
-<div class="responsibility">
-    <p>Topic</p>
-    <hr>
-    <p class="meeting-item-data"></p>
-</div>
+
 
 <div class="special-activity" *ngIf="meeting.isFastSunday == true">
-    <p class="center">""</p>
-    <p class="center">--</p>
+
 </div>
 
-<div class="responsibility" *ngIf="meeting.isFastSunday == false">
-    <p>Intermediate Hymn</p>
-    <hr>
-    <p class="meeting-item-data">##<br><span class="italics">""</span></p>
+<div *ngIf="meeting.isFastSunday == false">
+
+    <div class="responsibility">
+        <p>Speaker</p>
+        <hr>
+        <p class="meeting-item-data"></p>
+    </div>
+
+    <div class="responsibilit">
+        <p>Intermediate Hymn</p>
+        <hr>
+        <p class="meeting-item-data">#{{ meeting.intermediateHymnNumber }}<br><span class="italics">""</span></p>
+    
+    </div>
 </div>
+
+
 
 <div class="responsibility">
-    <p>Topic</p>
+    <p>Closing Hymn</p>
     <hr>
-    <p class="meeting-item-data"></p>
-</div>
-
-<div class="responsibility">
-    <p>Opening Hymn</p>
-    <hr>
-    <p class="meeting-item-data">##<br><span class="italics">""</span></p>
+    <p class="meeting-item-data">#{{ meeting.closingHymnNumber }}<br><span class="italics">""</span></p>
 </div>
 
 <div class="responsibility">
@@ -82,7 +83,7 @@
 <div class="responsibility">
     <p>Dismissal Hymn</p>
     <hr>
-    <p class="meeting-item-data">##<br><span class="italics">""</span></p>
+    <p class="meeting-item-data">#{{ meeting.dismissalHymnNumber }}<br><span class="italics">""</span></p>
 </div><br><br>
 
 <div class="btn-container display-btn-controls">

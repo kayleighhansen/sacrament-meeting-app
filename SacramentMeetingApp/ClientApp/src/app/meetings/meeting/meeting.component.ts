@@ -20,25 +20,17 @@ export class MeetingComponent implements OnInit {
 
   ngOnInit() {
 
-    this.meetings = MOCKMEETINGS;
-    console.log(this.meetings);
+    this.meetingService.fetchMeetings();
 
-    this.meetings.forEach((meeting)=> {
-      this.meeting = meeting;
-      console.log(this.meeting);
-    })
-
-    // this.meetingService.fetchMeetings();
-
-    // this.meetingChangeSub = this.meetingService.meetingListChanged.subscribe(
-    //   (meetings: Meeting[]) => {
-    //     this.meetings = meetings;
-    //     this.meetings.forEach((meeting) => {
-    //       this.meeting = meeting;
-    //       console.log(this.meeting.date);
-    //     }); 
-    //   }
-    // );
+    this.meetingChangeSub = this.meetingService.meetingListChanged.subscribe(
+      (meetings: Meeting[]) => {
+        this.meetings = meetings;
+        this.meetings.forEach((meeting) => {
+          this.meeting = meeting;
+          console.log(this.meeting.date);
+        }); 
+      }
+    );
 
     
   }
