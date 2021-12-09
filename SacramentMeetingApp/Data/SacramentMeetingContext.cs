@@ -16,6 +16,14 @@ using SacramentMeeting.Models;
         public DbSet<Bishopric> Bishopric { get; set; }
         public DbSet<Speaker> Speaker { get; set; }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+
+        {
+            modelBuilder.Entity<Meeting>().HasOne(m => m.Presiding).WithMany(o => o.Presidings).OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<Meeting>().HasOne(m => m.Conductor).WithMany(o => o.Conductings).OnDelete(DeleteBehavior.NoAction);
+
+        }
+
     }
 
     

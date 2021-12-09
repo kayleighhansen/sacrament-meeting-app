@@ -1,5 +1,3 @@
-
-
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -32,17 +30,16 @@ namespace SacramentMeeting.Models
         public bool isFastSunday { get; set; }
         public bool isSpecialMusicNumber { get; set; }
         public string SpecialMusicNumberMusician { get; set; }
-
         public string SpecialMusicNumberSong { get; set; }
-        
+
 
         /* navigation properties */
 
-        //[InverseProperty("PresidingId")]
+        [InverseProperty("Presidings")]
         public Bishopric Presiding { get; set; }
 
 
-        //[InverseProperty("ConductorId")]
+        [InverseProperty("Conductings")]
         public Bishopric Conductor { get; set; }
 
         public virtual ICollection<Speaker> Speakers { get; set; }

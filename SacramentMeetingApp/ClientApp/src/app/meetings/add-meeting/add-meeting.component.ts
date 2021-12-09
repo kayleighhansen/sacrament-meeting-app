@@ -176,8 +176,6 @@ export class AddMeetingComponent implements OnInit {
   }
 
   onAddSpeaker() {
-    const label = document.createElement('label');
-    label.innerHTML = "Speaker"
     const newSpeaker = new FormGroup({
       speaker: new FormControl(),
       topic: new FormControl()
@@ -187,5 +185,9 @@ export class AddMeetingComponent implements OnInit {
 
     (<FormArray>this.addMeetingForm.get('speakers')).push(newSpeaker);
 
+  }
+
+  getSpeakerControls() {
+    return (<FormArray>this.addMeetingForm.get('speakers')).controls;
   }
 }

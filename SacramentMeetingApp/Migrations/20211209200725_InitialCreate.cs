@@ -10,7 +10,7 @@ namespace SacramentMeetingApp.Migrations
                 name: "Bishopric",
                 columns: table => new
                 {
-                    Id = table.Column<long>(type: "bigint", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Calling = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -39,41 +39,66 @@ namespace SacramentMeetingApp.Migrations
                     DismissalHymnNumber = table.Column<int>(type: "int", nullable: false),
                     isFastSunday = table.Column<bool>(type: "bit", nullable: false),
                     isSpecialMusicNumber = table.Column<bool>(type: "bit", nullable: false),
-                    SpecialMusicNumberName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SpecialMusicNumberMusician = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PresidingId1 = table.Column<long>(type: "bigint", nullable: true),
-                    ConductorId1 = table.Column<long>(type: "bigint", nullable: true)
+                    SpecialMusicNumberSong = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Meeting", x => x.MeetingId);
                     table.ForeignKey(
-                        name: "FK_Meeting_Bishopric_ConductorId1",
-                        column: x => x.ConductorId1,
+                        name: "FK_Meeting_Bishopric_ConductorId",
+                        column: x => x.ConductorId,
                         principalTable: "Bishopric",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                     table.ForeignKey(
-                        name: "FK_Meeting_Bishopric_PresidingId1",
-                        column: x => x.PresidingId1,
+                        name: "FK_Meeting_Bishopric_PresidingId",
+                        column: x => x.PresidingId,
                         principalTable: "Bishopric",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Speaker",
+                columns: table => new
+                {
+                    SpeakerId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Topic = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    MeetingId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Speaker", x => x.SpeakerId);
+                    table.ForeignKey(
+                        name: "FK_Speaker_Meeting_MeetingId",
+                        column: x => x.MeetingId,
+                        principalTable: "Meeting",
+                        principalColumn: "MeetingId",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Meeting_ConductorId1",
+                name: "IX_Meeting_ConductorId",
                 table: "Meeting",
-                column: "ConductorId1");
+                column: "ConductorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Meeting_PresidingId1",
+                name: "IX_Meeting_PresidingId",
                 table: "Meeting",
-                column: "PresidingId1");
+                column: "PresidingId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Speaker_MeetingId",
+                table: "Speaker",
+                column: "MeetingId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Speaker");
+
             migrationBuilder.DropTable(
                 name: "Meeting");
 

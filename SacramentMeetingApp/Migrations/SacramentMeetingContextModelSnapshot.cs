@@ -20,9 +20,9 @@ namespace SacramentMeetingApp.Migrations
 
             modelBuilder.Entity("SacramentMeeting.Models.Bishopric", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
+                        .HasColumnType("int")
                         .UseIdentityColumn();
 
                     b.Property<string>("Calling")
@@ -55,9 +55,6 @@ namespace SacramentMeetingApp.Migrations
                     b.Property<int>("ConductorId")
                         .HasColumnType("int");
 
-                    b.Property<long?>("ConductorId1")
-                        .HasColumnType("bigint");
-
                     b.Property<string>("Date")
                         .HasColumnType("nvarchar(max)");
 
@@ -76,9 +73,6 @@ namespace SacramentMeetingApp.Migrations
                     b.Property<int>("PresidingId")
                         .HasColumnType("int");
 
-                    b.Property<long?>("PresidingId1")
-                        .HasColumnType("bigint");
-
                     b.Property<int>("SacramentHymnNumber")
                         .HasColumnType("int");
 
@@ -96,18 +90,18 @@ namespace SacramentMeetingApp.Migrations
 
                     b.HasKey("MeetingId");
 
-                    b.HasIndex("ConductorId1");
+                    b.HasIndex("ConductorId");
 
-                    b.HasIndex("PresidingId1");
+                    b.HasIndex("PresidingId");
 
                     b.ToTable("Meeting");
                 });
 
             modelBuilder.Entity("SacramentMeeting.Models.Speaker", b =>
                 {
-                    b.Property<long>("SpeakerId")
+                    b.Property<int>("SpeakerId")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
+                        .HasColumnType("int")
                         .UseIdentityColumn();
 
                     b.Property<int>("MeetingId")
@@ -129,12 +123,16 @@ namespace SacramentMeetingApp.Migrations
             modelBuilder.Entity("SacramentMeeting.Models.Meeting", b =>
                 {
                     b.HasOne("SacramentMeeting.Models.Bishopric", "Conductor")
-                        .WithMany()
-                        .HasForeignKey("ConductorId1");
+                        .WithMany("Conductings")
+                        .HasForeignKey("ConductorId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
 
                     b.HasOne("SacramentMeeting.Models.Bishopric", "Presiding")
-                        .WithMany()
-                        .HasForeignKey("PresidingId1");
+                        .WithMany("Presidings")
+                        .HasForeignKey("PresidingId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
 
                     b.Navigation("Conductor");
 
@@ -148,6 +146,13 @@ namespace SacramentMeetingApp.Migrations
                         .HasForeignKey("MeetingId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("SacramentMeeting.Models.Bishopric", b =>
+                {
+                    b.Navigation("Conductings");
+
+                    b.Navigation("Presidings");
                 });
 
             modelBuilder.Entity("SacramentMeeting.Models.Meeting", b =>

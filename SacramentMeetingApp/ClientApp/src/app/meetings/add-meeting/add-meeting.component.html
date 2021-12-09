@@ -78,18 +78,18 @@
                     </label>
                 </div>
                 <div class="fast-sunday">
-                    <div class="form-group" formArrayName="speakers" *ngFor="let speakerControl of addMeetingForm.get('speakers').controls; let i = index">
-                        <div class="form-field speaker" [formGroupName]="i">
-                            <div>
+                    <div class="form-group" formArrayName="speakers">
+                        <div class="form-field speaker" *ngFor="let speakerControl of getSpeakerControls(); let i = index" [formGroupName]="i">
+                            
                                 <div class="form-field">
                                     <label for="">Speaker</label>
-                                    <input type="text" class="form-control" [formControlName]="speaker">
+                                    <input type="text" class="form-control" formControlName="speaker">
                                 </div>
                                 <div class="form-field">
                                     <label for="">Topic</label>
-                                    <input type="text" class="form-control" [formControlName] ="topic">
+                                    <input type="text" class="form-control" formControlName="topic">
                                 </div>
-                            </div>
+                          
                         </div>
                     </div>
                     <div class="">
