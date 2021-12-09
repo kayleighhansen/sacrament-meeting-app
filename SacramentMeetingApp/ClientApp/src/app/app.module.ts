@@ -1,3 +1,5 @@
+// hello ruben
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -65,4 +67,8 @@ import { DropdownDirective } from './shared/dropdown.directive';
   providers: [],
   bootstrap: [AppComponent]
 })
+
+
+
+
 export class AppModule { }
