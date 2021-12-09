@@ -1,6 +1,7 @@
 
 
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SacramentMeeting.Models
 {
@@ -9,9 +10,9 @@ namespace SacramentMeeting.Models
         public int MeetingId { get; set; }
         public string Date { get; set; }
 
+
         // People
         public int PresidingId { get; set; }
-        
         public int ConductorId { get; set; }
         
 
@@ -20,41 +21,29 @@ namespace SacramentMeeting.Models
         public string ClosingPrayer { get; set; }
 
         // Hymns
-        public int OpeningHymnNumberId { get; set; }
-        
-
-        public int ClosingHymnNumberId { get; set; }
-        
-        public int SacramentHymnNumberId { get; set; }
-        
-        
-        public int? IntermediateHymnNumberId { get; set; }
-        
-        
-        public int DismissalHymnNumberId { get; set; }
-       
+        public int OpeningHymnNumber { get; set; }
+        public int ClosingHymnNumber { get; set; }
+        public int SacramentHymnNumber { get; set; }
+        public int? IntermediateHymnNumber { get; set; }
+        public int DismissalHymnNumber { get; set; }
 
 
         // Special Stuff
         public bool isFastSunday { get; set; }
         public bool isSpecialMusicNumber { get; set; }
-        public string SpecialMusicNumberName { get; set; }
         public string SpecialMusicNumberMusician { get; set; }
 
+        public string SpecialMusicNumberSong { get; set; }
+        
+
         /* navigation properties */
+
+        //[InverseProperty("PresidingId")]
         public Bishopric Presiding { get; set; }
 
+
+        //[InverseProperty("ConductorId")]
         public Bishopric Conductor { get; set; }
-
-        public Hymn OpeningHymnNumber { get; set;}
-
-        public Hymn ClosingHymnNumber { get; set; }
-
-        public Hymn SacramentHymnNumber { get; set; }
-
-        // public Hymn? IntermediateHymnNumber { get; set; }
-
-        public Hymn DismissalHymnNumber { get; set; }
 
         public virtual ICollection<Speaker> Speakers { get; set; }
 
