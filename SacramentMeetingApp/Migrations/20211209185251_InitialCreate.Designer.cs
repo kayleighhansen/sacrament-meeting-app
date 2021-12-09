@@ -3,14 +3,16 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace SacramentMeetingApp.Migrations
 {
     [DbContext(typeof(SacramentMeetingContext))]
-    partial class SacramentMeetingContextModelSnapshot : ModelSnapshot
+    [Migration("20211209185251_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -85,7 +87,7 @@ namespace SacramentMeetingApp.Migrations
                     b.Property<string>("SpecialMusicNumberMusician")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("SpecialMusicNumberSong")
+                    b.Property<string>("SpecialMusicNumberName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("isFastSunday")
@@ -103,29 +105,6 @@ namespace SacramentMeetingApp.Migrations
                     b.ToTable("Meeting");
                 });
 
-            modelBuilder.Entity("SacramentMeeting.Models.Speaker", b =>
-                {
-                    b.Property<long>("SpeakerId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .UseIdentityColumn();
-
-                    b.Property<int>("MeetingId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Topic")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("SpeakerId");
-
-                    b.HasIndex("MeetingId");
-
-                    b.ToTable("Speaker");
-                });
-
             modelBuilder.Entity("SacramentMeeting.Models.Meeting", b =>
                 {
                     b.HasOne("SacramentMeeting.Models.Bishopric", "Conductor")
@@ -139,20 +118,6 @@ namespace SacramentMeetingApp.Migrations
                     b.Navigation("Conductor");
 
                     b.Navigation("Presiding");
-                });
-
-            modelBuilder.Entity("SacramentMeeting.Models.Speaker", b =>
-                {
-                    b.HasOne("SacramentMeeting.Models.Meeting", null)
-                        .WithMany("Speakers")
-                        .HasForeignKey("MeetingId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("SacramentMeeting.Models.Meeting", b =>
-                {
-                    b.Navigation("Speakers");
                 });
 #pragma warning restore 612, 618
         }

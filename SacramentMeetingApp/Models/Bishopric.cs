@@ -1,5 +1,3 @@
-
-
 namespace SacramentMeeting.Models
 {
     public class Bishopric

@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace SacramentMeetingApp.Migrations
 {
     [DbContext(typeof(SacramentMeetingContext))]
-    [Migration("20211207210629_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20211209185409_CreateSpeaker")]
+    partial class CreateSpeaker
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -48,7 +48,7 @@ namespace SacramentMeetingApp.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<int>("ClosingHymnNumberId")
+                    b.Property<int>("ClosingHymnNumber")
                         .HasColumnType("int");
 
                     b.Property<string>("ClosingPrayer")
@@ -57,16 +57,19 @@ namespace SacramentMeetingApp.Migrations
                     b.Property<int>("ConductorId")
                         .HasColumnType("int");
 
+                    b.Property<long?>("ConductorId1")
+                        .HasColumnType("bigint");
+
                     b.Property<string>("Date")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("DismissalHymnNumberId")
+                    b.Property<int>("DismissalHymnNumber")
                         .HasColumnType("int");
 
-                    b.Property<int?>("IntermediateHymnNumberId")
+                    b.Property<int?>("IntermediateHymnNumber")
                         .HasColumnType("int");
 
-                    b.Property<int>("OpeningHymnNumberId")
+                    b.Property<int>("OpeningHymnNumber")
                         .HasColumnType("int");
 
                     b.Property<string>("OpeningPrayer")
@@ -75,7 +78,10 @@ namespace SacramentMeetingApp.Migrations
                     b.Property<int>("PresidingId")
                         .HasColumnType("int");
 
-                    b.Property<int>("SacramentHymnNumberId")
+                    b.Property<long?>("PresidingId1")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("SacramentHymnNumber")
                         .HasColumnType("int");
 
                     b.Property<string>("SpecialMusicNumberMusician")
@@ -91,6 +97,10 @@ namespace SacramentMeetingApp.Migrations
                         .HasColumnType("bit");
 
                     b.HasKey("MeetingId");
+
+                    b.HasIndex("ConductorId1");
+
+                    b.HasIndex("PresidingId1");
 
                     b.ToTable("Meeting");
                 });
@@ -108,9 +118,6 @@ namespace SacramentMeetingApp.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Prefix")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Topic")
                         .HasColumnType("nvarchar(max)");
 
@@ -119,6 +126,21 @@ namespace SacramentMeetingApp.Migrations
                     b.HasIndex("MeetingId");
 
                     b.ToTable("Speaker");
+                });
+
+            modelBuilder.Entity("SacramentMeeting.Models.Meeting", b =>
+                {
+                    b.HasOne("SacramentMeeting.Models.Bishopric", "Conductor")
+                        .WithMany()
+                        .HasForeignKey("ConductorId1");
+
+                    b.HasOne("SacramentMeeting.Models.Bishopric", "Presiding")
+                        .WithMany()
+                        .HasForeignKey("PresidingId1");
+
+                    b.Navigation("Conductor");
+
+                    b.Navigation("Presiding");
                 });
 
             modelBuilder.Entity("SacramentMeeting.Models.Speaker", b =>
