@@ -4,9 +4,9 @@ import { Prayer } from "./prayer.model";
 import { Bishopric } from "../bishopric/bishopric.model";
 
 export class Meeting {
-    subscribe(arg0: (item: any) => void) {
-      throw new Error('Method not implemented.');
-    }
+    // subscribe(arg0: (item: any) => void) {
+    //   throw new Error('Method not implemented.');
+    // }
 
     public id : number;
     public date : string;
@@ -19,6 +19,7 @@ export class Meeting {
 
     public openingHymn : number;
     public sacramentHymn : number;
+    public intermediateHymn : number;
     public closingHymn : number;
     public dismissalHymn : number;
 
@@ -39,6 +40,7 @@ export class Meeting {
                 closingPrayer: string,
                 openingHymn: number,
                 sacramentHymn: number,
+                intermediateHymn: number,
                 closingHymn: number,
                 dismissalHymn: number,
                 speakers: Speaker[],
@@ -56,6 +58,7 @@ export class Meeting {
         this.closingPrayer = closingPrayer;
         this.openingHymn = openingHymn;
         this.sacramentHymn = sacramentHymn;
+        this.intermediateHymn = intermediateHymn;
         this.closingHymn = closingHymn;
         this.dismissalHymn = dismissalHymn;
         this.speakers = speakers;

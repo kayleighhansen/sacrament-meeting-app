@@ -1,13 +1,13 @@
 export class Speaker {
-    subscribe(arg0: (item: any) => void) {
-      throw new Error('Method not implemented.');
-    }
+    // subscribe(arg0: (item: any) => void) {
+    //   throw new Error('Method not implemented.');
+    // }
 
-    public id : string;
+    public id : number;
     public name : string;
     public topic : string;
 
-    constructor(id: string, 
+    constructor(id: number, 
                 name: string, 
                 topic: string) {
                     
