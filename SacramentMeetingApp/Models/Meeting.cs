@@ -42,19 +42,19 @@ namespace SacramentMeeting.Models
         public string SpecialMusicNumberMusician { get; set; }
 
         /* navigation properties */
-        // public Bishopric Presiding { get; set; }
+        public Bishopric Presiding { get; set; }
 
-        // public Bishopric Conductor { get; set; }
+        public Bishopric Conductor { get; set; }
 
-        // public Hymn OpeningHymnNumber { get; set;}
+        public Hymn OpeningHymnNumber { get; set;}
 
-        // public Hymn ClosingHymnNumber { get; set; }
+        public Hymn ClosingHymnNumber { get; set; }
 
-        // public Hymn SacramentHymnNumber { get; set; }
+        public Hymn SacramentHymnNumber { get; set; }
 
-        // public Hymn IntermediateHymnNumber { get; set; }
+        public Hymn? IntermediateHymnNumber { get; set; }
 
-        // public Hymn DismissalHymnNumber { get; set; }
+        public Hymn DismissalHymnNumber { get; set; }
 
         public virtual ICollection<Speaker> Speakers { get; set; }
 
