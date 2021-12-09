@@ -22,16 +22,24 @@ namespace SacramentMeetingApp.Controllers
 
         // GET: api/SacramentMeeting
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Meeting>>> GetMeeting()
+        public async Task<ActionResult<IEnumerable<Meeting>>> GetMeetings()
         {
-            return await _context.Meeting.ToListAsync();
+            return await _context.Meeting
+                .Include(m => m.Conductor)
+                .Include(m => m.Presiding)
+                .Include(m => m.Speakers)
+                .ToListAsync();
         }
 
         // GET: api/SacramentMeeting/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Meeting>> GetMeeting(long id)
         {
-            var meeting = await _context.Meeting.FindAsync(id);
+            var meeting = await _context.Meeting
+                .Include(m => m.Conductor)
+                .Include(m => m.Presiding)
+                .Include(m => m.Speakers)
+                .FirstOrDefaultAsync(m => m.MeetingId == id);
 
             if (meeting == null)
             {

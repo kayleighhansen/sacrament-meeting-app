@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.NewtonsoftJson;
 
 namespace SacramentMeetingApp
 {
@@ -27,6 +28,10 @@ namespace SacramentMeetingApp
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+
+            services.AddControllersWithViews()
+                .AddNewtonsoftJson(options =>
+                    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
             services.AddDbContext<SacramentMeetingContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("SacramentMeetingContext")));
