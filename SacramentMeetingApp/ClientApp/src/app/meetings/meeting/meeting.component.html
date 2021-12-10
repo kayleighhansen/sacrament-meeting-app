@@ -5,9 +5,9 @@
     <div class="upcoming-meetings">
       <p class="meeting-type-title">Upcoming Meetings</p>
       <div class="upcoming-meeting-list">
-        <div class="meeting-item" [routerLink]="[meeting.id]" *ngFor="let meetingEl of meetings">
-          <p>{{ meeting.date }}</p>
-        </div>
+        <app-meeting-item class="meeting-item" [routerLink]="[meeting.id]" *ngFor="let meetingEl of meetings">
+          
+        </app-meeting-item>
       </div>
 
     </div>

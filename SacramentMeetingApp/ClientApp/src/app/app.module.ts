@@ -21,6 +21,7 @@ import { EditMeetingComponent } from './meetings/edit-meeting/edit-meeting.compo
 import { BishopricItemComponent } from './bishopric/bishopric-list/bishopric-item/bishopric-item.component';
 import { BishopricEditComponent } from './bishopric/bishopric-edit/bishopric-edit.component';
 import { DropdownDirective } from './shared/dropdown.directive';
+import { MeetingItemComponent } from './meetings/meeting-item/meeting-item.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { DropdownDirective } from './shared/dropdown.directive';
     HomeComponent,
     MeetingComponent,
     NavMenuComponent,
+    MeetingItemComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

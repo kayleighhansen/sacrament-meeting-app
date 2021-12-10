@@ -2,7 +2,6 @@ import { Component, Input, OnInit } from '@angular/core';
 import { MeetingService } from '../meeting.service';
 import { Meeting } from '../meeting.model';
 import { Subscription } from 'rxjs';
-import { MOCKMEETINGS } from '../MOCKMEETINGS';
 
 @Component({
   selector: 'app-meeting',
