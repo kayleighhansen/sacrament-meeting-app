@@ -19,7 +19,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 })
 export class AddMeetingComponent implements OnInit {
 
-  public shown = false;
+  public showSpeakers:boolean = false;
   public showMusic = false;
 
   fastSunday: boolean = false;
@@ -45,6 +45,8 @@ export class AddMeetingComponent implements OnInit {
   ngOnInit() {
     this.getHymnList();
 
+    console.log(this.showSpeakers);
+
     this.addMeetingForm = new FormGroup({
       'date': new FormControl(null, Validators.required),
       'presidingId': new FormControl(null, Validators.required),
@@ -64,7 +66,7 @@ export class AddMeetingComponent implements OnInit {
       'specialMusicNumberSong': new FormControl(null)
     });
 
-
+   
   }
 
   getHymnList() {
@@ -134,6 +136,14 @@ export class AddMeetingComponent implements OnInit {
       this.fetchHymnsEvent.next(this.hymns);
       this.hymnListChanged.next(this.hymns.slice());
     });
+  }
+
+  onShowSpeakers() {
+    console.log(this.showSpeakers);
+
+    if (this.showSpeakers = false) {
+      this.showSpeakers = true;
+    }
   }
 
   onSubmit() {
