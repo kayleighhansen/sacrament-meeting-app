@@ -9,6 +9,7 @@ import { map } from 'rxjs/operators';
 import { Subject, Subscription } from 'rxjs';
 import { FormArray, NgForm } from '@angular/forms';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 
 @Component({
@@ -39,11 +40,10 @@ export class AddMeetingComponent implements OnInit {
 
   addMeetingForm: FormGroup;
 
-  constructor(private http: HttpClient, private meetingService: MeetingService) { }
+  constructor(private http: HttpClient, private meetingService: MeetingService, private router: Router,) { }
 
   ngOnInit() {
     this.getHymnList();
-    this.getBishopricList();
 
     this.addMeetingForm = new FormGroup({
       'date': new FormControl(null, Validators.required),
@@ -51,17 +51,17 @@ export class AddMeetingComponent implements OnInit {
       'conductingId': new FormControl(null, Validators.required),
       'openingPrayer': new FormControl(null, Validators.required),
       'closingPrayer': new FormControl(null, Validators.required),
-      'openingHymn': new FormControl(null, Validators.required),
-      'sacramentHymn': new FormControl(null, Validators.required),
-      'intermediateHymn': new FormControl(null),
-      'closingHymn': new FormControl(null, Validators.required),
-      'dismissalHymn': new FormControl(null, Validators.required),
+      'openingHymnNumber': new FormControl(null, Validators.required),
+      'sacramentHymnNumber': new FormControl(null, Validators.required),
+      'intermediateHymnNumber': new FormControl(null),
+      'closingHymnNumber': new FormControl(null, Validators.required),
+      'dismissalHymnNumber': new FormControl(null, Validators.required),
       'isFastSunday': new FormControl(null, Validators.required),
       'speakers': new FormArray([]),
 
-      'isMusicSunday': new FormControl(null, Validators.required),
-      'musician': new FormControl(null),
-      'song': new FormControl(null)
+      'isSpecialMusicNumber': new FormControl(null, Validators.required),
+      'specialMusicNumberMusician': new FormControl(null),
+      'specialMusicNumberSong': new FormControl(null)
     });
 
     console.log(this.addMeetingForm.get('newSpeaker'));
@@ -137,42 +137,51 @@ export class AddMeetingComponent implements OnInit {
     });
   }
 
-  getBishopricList() {
+  // getBishopricList() {
 
-    this.meetingService.fetchBishopric();
-    const selectList1 = document.getElementById("presidingId");
-    const selectList2 = document.getElementById("conductingId");
+  //   this.meetingService.fetchBishopric();
+  //   const selectList1 = document.getElementById("presidingId");
+  //   const selectList2 = document.getElementById("conductingId");
 
-    this.fetchBishopricSubscription = this.meetingService.fetchBishopricEvent.subscribe((result) => {
+  //   this.fetchBishopricSubscription = this.meetingService.fetchBishopricEvent.subscribe((result) => {
 
-      this.bishopricList = result;
-      console.log(this.bishopricList);
+  //     this.bishopricList = result;
+  //     console.log(this.bishopricList);
 
-      this.bishopricList.forEach(res => {
-        var option = document.createElement("option");
-          option.value = res.id.toString();
-          option.text = res.name + ", " + res.calling;
+  //     this.bishopricList.forEach(res => {
+  //       var option = document.createElement("option");
+  //         option.value = res.id.toString();
+  //         option.text = res.name + ", " + res.calling;
 
-        if(res.status == true) {
-          selectList1.appendChild(option);
-        };
+  //       if(res.status == true) {
+  //         selectList1.appendChild(option);
+  //       };
 
-        var option = document.createElement("option");
-          option.value = res.id.toString();
-          option.text = res.name + ", " + res.calling;
+  //       var option = document.createElement("option");
+  //         option.value = res.id.toString();
+  //         option.text = res.name + ", " + res.calling;
 
-        if(res.status == true) {
-          selectList2.appendChild(option);
-        };
+  //       if(res.status == true) {
+  //         selectList2.appendChild(option);
+  //       };
         
-      }); 
+  //     }); 
       
-    });
+  //   });
 
-  }
+  // }
 
   onSubmit() {
-    console.log(this.addMeetingForm);
+
+    let form = this.addMeetingForm.value;
+
+    console.log(form);
+
+    this.http.post('https://localhost:5001/api/SacramentMeeting', form).subscribe(
+      (response) => console.log(response),
+      (error) => console.log(error)
+    )
+    
   }
 
   onAddSpeaker() {

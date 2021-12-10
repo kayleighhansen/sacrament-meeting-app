@@ -113,4 +113,11 @@ export class MeetingService {
 
     return;
   }
+
+  addMeeting(newMeeting) {
+    this.http.post(`https://localhost:5001/api/SacramentMeeting/`, newMeeting)
+      .subscribe(responseData => {
+        console.log(responseData);
+      });
+  }
 }

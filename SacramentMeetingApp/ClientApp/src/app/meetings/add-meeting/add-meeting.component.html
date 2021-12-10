@@ -15,13 +15,17 @@
                 <div class="form-field">
                     <label for="presiding">Presiding <span class="required">*</span></label><br>
                     <select type="text" class="presidingId" id="presidingId" formControlName="presidingId">
-                        <option value="">--</option>
+                        <option value=1>Bishop</option>
+                        <option value=2>First Counselor</option>
+                        <option value=3>Second Counselor</option>
                     </select>
                 </div>
                 <div class="form-field">
                     <label for="presiding">Conducting <span class="required">*</span></label><br>
                     <select type="text" class="conductingId" id="conductingId" formControlName="conductingId">
-                        <option value="">--</option>
+                        <option value=1>Bishop</option>
+                        <option value=2>First Counselor</option>
+                        <option value=3>Second Counselor</option>
                     </select>
                 </div>
                 <div class="form-field">
@@ -39,31 +43,31 @@
             <div>
                 <div class="form-field">
                     <label for="openingHymn">Opening Hymn <span class="required">*</span></label><br>
-                    <select type="number" class="openingHymn" id="openingHymn" formControlName="openingHymn">
+                    <select type="number" class="openingHymn" id="openingHymn" formControlName="openingHymnNumber">
                         <option value="">---</option>
                     </select>
                 </div>
                 <div class="form-field">
                     <label for="sacramentHymn">Sacrament Hymn <span class="required">*</span></label><br>
-                    <select type="number" class="sacramentHymn" id="sacramentHymn" formControlName="sacramentHymn">
+                    <select type="number" class="sacramentHymn" id="sacramentHymn" formControlName="sacramentHymnNumber">
                         <option value="">---</option>
                     </select>
                 </div>
                 <div class="form-field">
                     <label for="intermediateHymn">Intermediate Hymn</label><br>
-                    <select type="number" class="intermediateHymn" id="intermediateHymn" formControlName="intermediateHymn">
+                    <select type="number" class="intermediateHymn" id="intermediateHymn" formControlName="intermediateHymnNumber">
                         <option value="">---</option>
                     </select>
                 </div>
                 <div class="form-field">
                     <label for="closingHymn">Closing Hymn <span class="required">*</span></label><br>
-                    <select type="number" class="closingHymn" id="closingHymn" formControlName="closingHymn">
+                    <select type="number" class="closingHymn" id="closingHymn" formControlName="closingHymnNumber">
                         <option value="">---</option>
                     </select>
                 </div>
                 <div class="form-field">
                     <label for="dismissalHymn">Dismissal Hymn <span class="required">*</span></label><br>
-                    <select type="number" class="dismissalHymn" id="dismissalHymn" formControlName="dismissalHymn">
+                    <select type="number" class="dismissalHymn" id="dismissalHymn" formControlName="dismissalHymnNumber">
                         <option value="">---</option>
                     </select>
                 </div>
@@ -103,7 +107,7 @@
                 <div class="form-field">
                     <div class="form-field">
                         <label class="container">Special Music Number <span class="required">*</span>
-                            <input type="checkbox" class="isMusicSunday" id="isMusicSunday" formControlName="isMusicSunday">
+                            <input type="checkbox" class="isMusicSunday" id="isMusicSunday" formControlName="isSpecialMusicNumber">
                             <span class="checkmark"></span>
                         </label>
                     </div>
@@ -112,11 +116,11 @@
                             <div>
                                 <div class="form-field">
                                     <label for="musician">Musician/Group</label><br>
-                                    <input type="text" class="musician form-control" id="musician" formControlName="musician">
+                                    <input type="text" class="musician form-control" id="musician" formControlName="specialMusicNumberMusician">
                                 </div>
                                 <div class="form-field">
                                     <label for="song">Song</label><br>
-                                    <input type="text" class="song form-control" id="song" name="song" formControlName="song">
+                                    <input type="text" class="song form-control" id="song" name="song" formControlName="specialMusicNumberSong">
                                 </div>
                             </div>
                         </div>
