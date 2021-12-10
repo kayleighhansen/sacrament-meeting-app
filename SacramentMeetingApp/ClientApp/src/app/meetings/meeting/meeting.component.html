@@ -5,7 +5,7 @@
     <div class="upcoming-meetings">
       <p class="meeting-type-title">Upcoming Meetings</p>
       <div class="upcoming-meeting-list">
-        <app-meeting-item class="meeting-item" [routerLink]="[meeting.id]" *ngFor="let meetingEl of meetings">
+        <app-meeting-item  *ngFor="let meetingEl of meetings" [meeting]="meetingEl">
           
         </app-meeting-item>
       </div>
