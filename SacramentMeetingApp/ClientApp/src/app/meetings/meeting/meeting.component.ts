@@ -27,7 +27,7 @@ export class MeetingComponent implements OnInit {
         this.meetings = meetings;
         this.meetings.forEach((meeting) => {
           this.meeting = meeting;
-          console.log(this.meeting.date);
+          //console.log(this.meeting.date);
         }); 
       }
     );

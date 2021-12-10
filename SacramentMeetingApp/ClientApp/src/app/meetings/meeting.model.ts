@@ -17,11 +17,11 @@ export class Meeting {
     public openingPrayer : string;
     public closingPrayer : string;
 
-    public openingHymn : number;
-    public sacramentHymn : number;
-    public intermediateHymn : number;
-    public closingHymn : number;
-    public dismissalHymn : number;
+    public openingHymnNumber : number;
+    public sacramentHymnNumber : number;
+    public intermediateHymnNumber : number;
+    public closingHymnNumber : number;
+    public dismissalHymnNumber : number;
 
     public speakers : Speaker[];
 
@@ -38,11 +38,11 @@ export class Meeting {
                 conductingId: Bishopric,
                 openingPrayer: string,
                 closingPrayer: string,
-                openingHymn: number,
-                sacramentHymn: number,
-                intermediateHymn: number,
-                closingHymn: number,
-                dismissalHymn: number,
+                openingHymnNumber: number,
+                sacramentHymnNumber: number,
+                intermediateHymnNumber: number,
+                closingHymnNumber: number,
+                dismissalHymnNumber: number,
                 speakers: Speaker[],
                 isFastSunday: boolean,
                 isSpecialMusic: boolean,
@@ -56,11 +56,11 @@ export class Meeting {
         this.conductingId = conductingId;
         this.openingPrayer = openingPrayer;
         this.closingPrayer = closingPrayer;
-        this.openingHymn = openingHymn;
-        this.sacramentHymn = sacramentHymn;
-        this.intermediateHymn = intermediateHymn;
-        this.closingHymn = closingHymn;
-        this.dismissalHymn = dismissalHymn;
+        this.openingHymnNumber = openingHymnNumber;
+        this.sacramentHymnNumber = sacramentHymnNumber;
+        this.intermediateHymnNumber = intermediateHymnNumber;
+        this.closingHymnNumber = closingHymnNumber;
+        this.dismissalHymnNumber = dismissalHymnNumber;
         this.speakers = speakers;
         this.isFastSunday = isFastSunday;
         this.isSpecialMusic = isSpecialMusic;

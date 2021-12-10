@@ -46,11 +46,11 @@
 
 
 
-<div class="special-activity" *ngIf="meeting.isFastSunday == true">
+<div class="special-activity" >
 
 </div>
 
-<div *ngIf="meeting.isFastSunday == false">
+<div >
 
     <div class="responsibility">
         <p>Speaker</p>
@@ -58,7 +58,7 @@
         <p class="meeting-item-data"></p>
     </div>
 
-    <div class="responsibilit">
+    <div class="responsibility">
         <p>Intermediate Hymn</p>
         <hr>
         <p class="meeting-item-data">#{{ meeting.intermediateHymnNumber }}<br><span class="italics">""</span></p>

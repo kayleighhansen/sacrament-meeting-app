@@ -4,6 +4,7 @@ import { Bishopric } from '../bishopric/bishopric.model';
 import { Meeting } from './meeting.model';
 import { map } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { Hymn } from './hymn.model';
 
 
 @Injectable({
@@ -17,11 +18,16 @@ export class MeetingService {
   meetings: Meeting[] = [];
   meeting: Meeting;
 
+  hymn: Hymn;
+  hymns: Hymn[] = [];
+
   fetchBishopricEvent = new Subject<Bishopric[]>();
   fetchMeetingsEvent = new Subject<Meeting[]>();
+  fetchHymnsEvent = new Subject<Hymn[]>();
 
   bishopricListChanged = new Subject<Bishopric[]>();
   meetingListChanged = new Subject<Meeting[]>();
+  hymnListChanged = new Subject<Hymn[]>();
 
   constructor(private http: HttpClient, 
               @Inject('BASE_URL') private baseURL: string) { }
@@ -44,7 +50,7 @@ export class MeetingService {
       this.bishopric = bishopric;
         this.fetchBishopricEvent.next(this.bishopric);
 
-        console.log(this.bishopric);
+        //console.log(this.bishopric);
 
         this.bishopric.sort((a , b) => 
         a.status > b.status ? 1 : b.status > a.status ? -1 : 0);
@@ -69,7 +75,7 @@ export class MeetingService {
       this.meetings = meetings;
         this.fetchMeetingsEvent.next(this.meetings);
 
-        console.log(this.meetings);
+        //e.log(this.meetings);
 
         this.meetings.sort((a , b) => 
         a.date > b.date ? 1 : b.date > a.date ? -1 : 0);
@@ -78,4 +84,33 @@ export class MeetingService {
     return;
   }
 
+  fetchHymns() {
+    let hymnURL= 'https://cdn.statically.io/gh/pseudosavant/LDSHymns/c3a00214e2f879a855f5894b345596dd6c547b70/hymns.json';
+
+    this.http
+      .get<Hymn[]>(hymnURL)
+      .pipe(
+        map(responseData => {
+          const postsArray = [];
+          for (const key in responseData) {
+            if (responseData.hasOwnProperty(key)) {
+              postsArray.push({ ...responseData[key], id: key})
+            }
+          }
+          return postsArray;
+        })
+      )
+      .subscribe(hymns => {
+        this.hymns = hymns;
+
+        this.fetchHymnsEvent.next(this.hymns);
+        this.fetchHymnsEvent.next(this.hymns);
+
+       
+        this.hymnListChanged.next(this.hymns.slice());
+
+      });
+
+    return;
+  }
 }

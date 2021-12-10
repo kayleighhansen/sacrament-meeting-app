@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Location, LocationStrategy } from '@angular/common';
 import { MeetingService } from '../meeting.service';
 import { Meeting } from '../meeting.model';
-import { Subscription } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
+import { Hymn } from '../hymn.model';
+import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 
 
 @Component({
@@ -10,27 +13,37 @@ import { Subscription } from 'rxjs';
   templateUrl: './display.component.html',
   styleUrls: ['../../app.component.css']
 })
-export class DisplayComponent implements OnInit {
+export class DisplayComponent implements OnInit, OnDestroy {
 
   meeting: Meeting;
   meetings: Meeting[]=[];
 
   error:string;
 
-  fetchMeetingsSubscription: Subscription;
+  hymn: Hymn;
+  hymns: Hymn[]=[];
+  hymnName: string;
 
-  constructor(private location: Location, private locationStrategy: LocationStrategy, private meetingService: MeetingService) { }
+  openingHymnName: string;
+
+  fetchMeetingsSubscription: Subscription;
+  fetchHymnsSubscription: Subscription;
+
+  fetchHymnsEvent = new Subject<Hymn[]>();
+  hymnListChanged = new Subject<Hymn[]>();
+
+
+  constructor(private location: Location, private locationStrategy: LocationStrategy, private meetingService: MeetingService, private http: HttpClient) { }
 
   ngOnInit() {
-    // get meeting by id
     this.getMeetingById();
 
   }
 
   getMeetingById() {
-    let id = this.location.path().replace("/home/", "");
-
     this.meetingService.fetchMeetings();
+
+    let id = this.location.path().replace("/home/", "");
         
     this.fetchMeetingsSubscription = this.meetingService.fetchMeetingsEvent.subscribe((result) => {
       result.forEach((x) => {
@@ -39,11 +52,28 @@ export class DisplayComponent implements OnInit {
         } 
       }
     );
-    console.log(this.meeting);
+    this.openingHymnName = this.getHymnName();
     }, error => {
       this.error = error.message;
     });
 
+  }
+
+  getHymnName(): string {
+    this.meetingService.fetchHymns();
+
+    this.fetchHymnsSubscription = this.meetingService.fetchHymnsEvent.subscribe((result) => {
+      result.forEach((x) => {
+        if (x.songNumber == this.meeting.openingHymnNumber.toString()) {
+          this.hymnName = x.name;
+        }});
+      });
+    return this.hymnName;
+  }
+
+  ngOnDestroy(): void {
+    this.fetchHymnsSubscription.unsubscribe();
+    this.fetchMeetingsSubscription.unsubscribe();
   }
 
 }

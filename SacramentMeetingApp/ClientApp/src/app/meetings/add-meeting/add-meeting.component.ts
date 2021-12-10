@@ -190,4 +190,8 @@ export class AddMeetingComponent implements OnInit {
   getSpeakerControls() {
     return (<FormArray>this.addMeetingForm.get('speakers')).controls;
   }
+
+  ngOnDestroy(): void {
+    this.fetchBishopricSubscription.unsubscribe();
+  }
 }
