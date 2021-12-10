@@ -102,13 +102,7 @@ export class MeetingService {
       )
       .subscribe(hymns => {
         this.hymns = hymns;
-
         this.fetchHymnsEvent.next(this.hymns);
-        this.fetchHymnsEvent.next(this.hymns);
-
-       
-        this.hymnListChanged.next(this.hymns.slice());
-
       });
 
     return;

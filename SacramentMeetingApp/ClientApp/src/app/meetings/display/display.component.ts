@@ -24,13 +24,19 @@ export class DisplayComponent implements OnInit, OnDestroy {
   hymns: Hymn[]=[];
   hymnName: string;
 
-  openingHymnName: string;
+  // openingHymnName: string;
 
   fetchMeetingsSubscription: Subscription;
   fetchHymnsSubscription: Subscription;
 
   fetchHymnsEvent = new Subject<Hymn[]>();
   hymnListChanged = new Subject<Hymn[]>();
+
+  openingHymnName: string;
+  sacramentHymnName: string;
+  intermediateHymnName: string;
+  closingHymnName: string;
+  dismissalHymnName: string;
 
 
   constructor(private location: Location, private locationStrategy: LocationStrategy, private meetingService: MeetingService, private http: HttpClient) { }
@@ -49,31 +55,42 @@ export class DisplayComponent implements OnInit, OnDestroy {
       result.forEach((x) => {
         if (x.id == parseInt(id)) {
           this.meeting = x ;
+          console.log(this.meeting);
         } 
       }
     );
-    this.openingHymnName = this.getHymnName();
+    this.getHymnName();
     }, error => {
       this.error = error.message;
     });
 
   }
 
-  getHymnName(): string {
+  getHymnName() {
     this.meetingService.fetchHymns();
 
     this.fetchHymnsSubscription = this.meetingService.fetchHymnsEvent.subscribe((result) => {
-      result.forEach((x) => {
-        if (x.songNumber == this.meeting.openingHymnNumber.toString()) {
-          this.hymnName = x.name;
-        }});
-      });
-    return this.hymnName;
+      this.openingHymnName = result[this.meeting.openingHymnNumber - 1].name;
+      console.log(this.openingHymnName);
+
+      this.sacramentHymnName = result[this.meeting.sacramentHymnNumber - 1].name;
+      console.log(this.sacramentHymnName);
+
+      this.intermediateHymnName = result[this.meeting.intermediateHymnNumber - 1].name;
+      console.log(this.intermediateHymnName);
+
+      this.closingHymnName = result[this.meeting.closingHymnNumber - 1].name;
+      console.log(this.closingHymnName);
+
+      this.dismissalHymnName = result[this.meeting.closingHymnNumber - 1].name;
+      console.log(this.dismissalHymnName);
+    });
   }
 
   ngOnDestroy(): void {
     this.fetchHymnsSubscription.unsubscribe();
     this.fetchMeetingsSubscription.unsubscribe();
+    this.fetchHymnsEvent.unsubscribe();
   }
 
 }
