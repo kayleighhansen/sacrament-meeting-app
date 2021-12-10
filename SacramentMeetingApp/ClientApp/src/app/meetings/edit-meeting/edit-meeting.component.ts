@@ -2,8 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Hymn } from '../hymn.model';
 import { map } from 'rxjs/operators';
-import { Subject } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
+import { MeetingService } from '../meeting.service';
+import { Location, LocationStrategy } from '@angular/common';
+import { Meeting } from '../meeting.model';
+
 
 @Component({
   selector: 'app-edit-meeting',
@@ -12,18 +16,26 @@ import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 })
 export class EditMeetingComponent implements OnInit {
 
+  error: string;
+
   hymn: Hymn;
   hymns: Hymn[] = [];
 
+  meeting: Meeting;
+  meetings: Meeting[]=[];
+
   fetchHymnsEvent = new Subject<Hymn[]>();
   hymnListChanged = new Subject<Hymn[]>();
+  fetchMeetingsSubscription: Subscription;
 
   editMeetingForm: FormGroup;
 
-  constructor(private http: HttpClient) { }
+  constructor(private location: Location, private locationStrategy: LocationStrategy, private http: HttpClient, private meetingService: MeetingService) { }
 
   ngOnInit() {
     this.getHymnList();
+
+    this.getMeetingById();
 
     this.editMeetingForm = new FormGroup({
       'date': new FormControl(null, Validators.required),
@@ -117,7 +129,22 @@ export class EditMeetingComponent implements OnInit {
     });
   }
 
-  LoadDetails() {
+  getMeetingById() {
+    this.meetingService.fetchMeetings();
+
+    let id = this.location.path().replace("/home/", "").replace("/edit", "");
+        
+    this.fetchMeetingsSubscription = this.meetingService.fetchMeetingsEvent.subscribe((result) => {
+      result.forEach((x) => {
+        if (x.id == parseInt(id)) {
+          this.meeting = x ;
+          console.log(this.meeting);
+        } 
+      }
+    );
+    }, error => {
+      this.error = error.message;
+    });
 
   }
 
@@ -136,5 +163,11 @@ export class EditMeetingComponent implements OnInit {
 
   onSubmit() {
     console.log(this.editMeetingForm);
+  }
+
+  ngOnDestroy(): void {
+    this.fetchMeetingsSubscription.unsubscribe();
+    this.fetchHymnsEvent.unsubscribe();
+    // this.fetchMeetingsEvent.unsubscribe();
   }
 }
