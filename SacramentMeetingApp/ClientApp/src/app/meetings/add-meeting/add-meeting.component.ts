@@ -22,8 +22,8 @@ export class AddMeetingComponent implements OnInit {
   public shown = false;
   public showMusic = false;
 
-  fastSunday: boolean;
-  specialMusic: boolean;
+  fastSunday: boolean = false;
+  specialMusic: boolean = false;
 
   prayer: Prayer;
   meeting: Meeting;
@@ -64,7 +64,6 @@ export class AddMeetingComponent implements OnInit {
       'specialMusicNumberSong': new FormControl(null)
     });
 
-    console.log(this.addMeetingForm.get('newSpeaker'));
 
   }
 
@@ -137,45 +136,9 @@ export class AddMeetingComponent implements OnInit {
     });
   }
 
-  // getBishopricList() {
-
-  //   this.meetingService.fetchBishopric();
-  //   const selectList1 = document.getElementById("presidingId");
-  //   const selectList2 = document.getElementById("conductingId");
-
-  //   this.fetchBishopricSubscription = this.meetingService.fetchBishopricEvent.subscribe((result) => {
-
-  //     this.bishopricList = result;
-  //     console.log(this.bishopricList);
-
-  //     this.bishopricList.forEach(res => {
-  //       var option = document.createElement("option");
-  //         option.value = res.id.toString();
-  //         option.text = res.name + ", " + res.calling;
-
-  //       if(res.status == true) {
-  //         selectList1.appendChild(option);
-  //       };
-
-  //       var option = document.createElement("option");
-  //         option.value = res.id.toString();
-  //         option.text = res.name + ", " + res.calling;
-
-  //       if(res.status == true) {
-  //         selectList2.appendChild(option);
-  //       };
-        
-  //     }); 
-      
-  //   });
-
-  // }
-
   onSubmit() {
 
     let form = this.addMeetingForm.value;
-
-    console.log(form);
 
     this.http.post('https://localhost:5001/api/SacramentMeeting', form).subscribe(
       (response) => console.log(response),
