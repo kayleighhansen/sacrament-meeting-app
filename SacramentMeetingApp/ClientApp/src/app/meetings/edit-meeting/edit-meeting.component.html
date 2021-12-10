@@ -10,19 +10,25 @@
             <div>
                 <div class="form-field">
                     <label for="date">Date <span class="required">*</span></label><br>
-                    <input type="date" class="date" id="date" formControlName="date" >
+                    <input type="text" class="date" id="date" formControlName="date">
                 </div>
                 <div class="form-field">
                     <label for="presiding">Presiding <span class="required">*</span></label><br>
                     <select type="text" class="presidingId" id="presidingId" formControlName="presidingId">
                         <option value="">--</option>
-                    </select>
+                        <option value="Bishop">Bishop</option>
+                        <option value="First Counselor">First Counselor</option>
+                        <option value="Second Counselor">Second Counselor</option>
+                    </select> 
                 </div>
                 <div class="form-field">
                     <label for="presiding">Conducting <span class="required">*</span></label><br>
                     <select type="text" class="conductingId" id="conductingId" formControlName="conductingId">
                         <option value="">--</option>
-                    </select>
+                        <option value="Bishop">Bishop</option>
+                        <option value="First Counselor">First Counselor</option>
+                        <option value="Second Counselor">Second Counselor</option>
+                    </select> 
                 </div>
                 <div class="form-field">
                     <label for="openingPrayer">Opening Prayer <span class="required">*</span></label><br>
