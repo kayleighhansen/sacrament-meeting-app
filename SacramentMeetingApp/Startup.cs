@@ -35,6 +35,9 @@ namespace SacramentMeetingApp
 
             services.AddDbContext<SacramentMeetingContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("SacramentMeetingContext")));
+
+            services.AddDbContext<BishopricContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("BishopricContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
