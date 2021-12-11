@@ -6,7 +6,7 @@ export const MOCKBISHOPRICS: Bishopric[] = [
         id: 1,
         name: 'Joseph Smith',
         calling: 'Bishop',
-        status: true
+        status: false
     },
     {
         id: 2,
