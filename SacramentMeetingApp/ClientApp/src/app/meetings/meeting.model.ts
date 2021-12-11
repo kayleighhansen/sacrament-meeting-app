@@ -1,6 +1,6 @@
 import { Hymn } from "./hymn.model";
 import { Speaker } from "./speaker.model";
-import { Prayer } from "./prayer.model";
+// import { Prayer } from "./prayer.model";
 import { Bishopric } from "../bishopric/bishopric.model";
 
 export class Meeting {

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Meeting } from '../meeting.model';
 import { MeetingService } from '../meeting.service';
-import { Prayer } from '../prayer.model';
+// import { Prayer } from '../prayer.model';
 import { Bishopric } from 'src/app/bishopric/bishopric.model';
 import { Hymn } from '../hymn.model';
 import { map } from 'rxjs/operators';
@@ -25,7 +25,7 @@ export class AddMeetingComponent implements OnInit {
   fastSunday: boolean = false;
   specialMusic: boolean = false;
 
-  prayer: Prayer;
+  // prayer: Prayer;
   meeting: Meeting;
   bishopric: Bishopric;
 
