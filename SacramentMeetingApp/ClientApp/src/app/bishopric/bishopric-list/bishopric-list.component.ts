@@ -36,7 +36,7 @@ export class BishopricListComponent implements OnInit, OnDestroy {
   }
 
   onNewBishopric() {
-    this.bishopricService.addBishopric(this.defaultBishopric);
+    // this.bishopricService.addBishopric(this.defaultBishopric);
     this.router.navigate(['new'], { relativeTo: this.route })
   }
 

@@ -55,26 +55,39 @@ export class BishopricService {
     this.maxBishopricId++;
     newBishopric.id = this.maxBishopricId;
     this.bishoprics.push(newBishopric);
+
+    console.log('You have added a bishopric member');
+
     this.bishopricsClone = this.bishoprics.slice();
     this.bishopricChangedEvent.next(this.bishopricsClone);
   }
 
-  updateBishopric(originalBishopric: Bishopric, newBishopric: Bishopric) {
-    if (!originalBishopric || !newBishopric) {
-      return;
-    }
+  updateBishopric(index: number, newBishopric: Bishopric) {
 
-    this.pos = this.bishoprics.indexOf(originalBishopric);
-    if (this.pos < 0) {
-      return;
-    }
 
-    newBishopric.id = originalBishopric.id;
-    this.bishoprics[this.pos] = newBishopric;
-    this.bishopricsClone = this.bishoprics.slice();
-    this.bishopricChangedEvent.next(this.bishopricsClone);
+    //New Code
+
+    // Previous Code took these as parameters (originalBishopric: Bishopric, newBishopric: Bishopric)
+    // if (!originalBishopric || !newBishopric) {
+    //   return;
+    // }
+
+    // this.pos = this.bishoprics.indexOf(originalBishopric);
+    // if (this.pos < 0) {
+    //   return;
+    // }
+
+    // newBishopric.id = originalBishopric.id;
+    // this.bishoprics[this.pos] = newBishopric;
+    // this.bishopricsClone = this.bishoprics.slice();
+    // this.bishopricChangedEvent.next(this.bishopricsClone);
 
   }
+
+  releaseBishopric(index: number) {
+    this.bishoprics[index].status = false;
+  }
+
 
 
 }

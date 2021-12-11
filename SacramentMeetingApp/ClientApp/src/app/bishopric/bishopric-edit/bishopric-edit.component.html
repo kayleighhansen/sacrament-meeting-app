@@ -1,2 +1,40 @@
-<p>bishopric-edit works!</p>
-<p>Here will be a form to create and edit bishopric members</p>
+<div class="row">
+    <div class="col-xs-12">
+        <form [formGroup]="bishopricForm" (ngSubmit)="onSubmit()">
+            
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" class="form-control" formControlName="name">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <label for="calling">Calling</label>
+                    <div style="margin-left: 30px;" class="radio" *ngFor="let calling of callings">
+                        <input type="radio" formControlName="calling" [value]="calling"> {{ calling }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="btn-toolbar">
+                        <button type="submit" class="btn btn-success" [disabled]="!bishopricForm.valid">Save</button>
+                        <button type="button" class="btn btn-danger" (click)="onCancel()">Cancel</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="alert alert-danger" *ngIf="displayErrorMessage" style="margin-top: 10px;">
+                {{ errorMessage.oldName }} is currently the {{ errorMessage.oldCalling }}.
+                Please release him before adding {{errorMessage.newName }} as the {{ errorMessage.newCalling }}.
+            </div>
+           
+            
+        </form>
+    </div>
+</div>

@@ -35,4 +35,9 @@ export class BishopricDetailComponent implements OnInit {
     this.router.navigate(['edit'], { relativeTo: this.route })
   }
 
+  onReleaseBishopric() {
+    this.bishopricService.releaseBishopric(this.id);
+    this.router.navigate(['/bishopric']);
+  }
+
 }
