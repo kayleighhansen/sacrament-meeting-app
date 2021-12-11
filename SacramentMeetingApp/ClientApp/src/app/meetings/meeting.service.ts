@@ -29,12 +29,11 @@ export class MeetingService {
   meetingListChanged = new Subject<Meeting[]>();
   hymnListChanged = new Subject<Hymn[]>();
 
-  constructor(private http: HttpClient, 
-              @Inject('BASE_URL') private baseURL: string) { }
+  constructor(private http: HttpClient, @Inject('BASE_URL') private baseURL: string) { }
 
   // how to get the api to deliver data here:
   fetchBishopric() {
-    this.http.get<Bishopric>(this.baseURL + "api/Bishoprics")
+    this.http.get<Bishopric>(this.baseURL + "api/Bishopric")
     .pipe(
       map(responseData => {
         const postsArray = [];
@@ -50,7 +49,7 @@ export class MeetingService {
       this.bishopric = bishopric;
         this.fetchBishopricEvent.next(this.bishopric);
 
-        //console.log(this.bishopric);
+        // console.log(this.bishopric);
 
         this.bishopric.sort((a , b) => 
         a.status > b.status ? 1 : b.status > a.status ? -1 : 0);

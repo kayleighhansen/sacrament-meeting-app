@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Meeting } from '../meeting.model';
 import { MeetingService } from '../meeting.service';
-// import { Prayer } from '../prayer.model';
 import { Bishopric } from 'src/app/bishopric/bishopric.model';
 import { Hymn } from '../hymn.model';
 import { map } from 'rxjs/operators';
@@ -45,9 +44,12 @@ export class AddMeetingComponent implements OnInit {
 
   ngOnInit() {
     this.getHymnList();
+    this.getBishopricList();
 
-    console.log(this.showSpeakers);
+    this.getFormControls();
+  }
 
+  getFormControls() {
     this.addMeetingForm = new FormGroup({
       'date': new FormControl(null, Validators.required),
       'presidingId': new FormControl(null, Validators.required),
@@ -66,8 +68,6 @@ export class AddMeetingComponent implements OnInit {
       'specialMusicNumberMusician': new FormControl(null),
       'specialMusicNumberSong': new FormControl(null)
     });
-
-   
   }
 
   getHymnList() {
@@ -137,6 +137,20 @@ export class AddMeetingComponent implements OnInit {
       this.fetchHymnsEvent.next(this.hymns);
       this.hymnListChanged.next(this.hymns.slice());
     });
+  }
+
+  getBishopricList() {
+    this.meetingService.fetchBishopric();
+
+    this.fetchBishopricSubscription = this.meetingService.bishopricListChanged.subscribe(
+      (bishopric: Bishopric[]) => {
+        this.bishopricList = bishopric;
+        console.log(this.bishopricList);
+        this.bishopricList.forEach((bishopric) => {
+          this.bishopric = bishopric;
+        }); 
+      }
+    );
   }
 
   onShowSpeakers() {
