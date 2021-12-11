@@ -26,10 +26,10 @@ export class Meeting {
     public speakers : Speaker[];
 
     public isFastSunday : boolean;
-    public isSpecialMusic : boolean;
+    public isSpecialMusicNumber : boolean;
 
-    public musician : string;
-    public song : string;
+    public specialMusicNumberMusician : string;
+    public specialMusicNumberSong : string;
 
 
     constructor(id: number, 
@@ -45,9 +45,9 @@ export class Meeting {
                 dismissalHymnNumber: number,
                 speakers: Speaker[],
                 isFastSunday: boolean,
-                isSpecialMusic: boolean,
-                musician: string,
-                song: string,
+                isSpecialMusicNumber: boolean,
+                specialMusicNumberMusician: string,
+                specialMusicNumberSong: string,
                 ) {
 
         this.id = id;
@@ -63,9 +63,9 @@ export class Meeting {
         this.dismissalHymnNumber = dismissalHymnNumber;
         this.speakers = speakers;
         this.isFastSunday = isFastSunday;
-        this.isSpecialMusic = isSpecialMusic;
-        this.musician = musician;
-        this.song = song;
+        this.isSpecialMusicNumber = isSpecialMusicNumber;
+        this.specialMusicNumberMusician = specialMusicNumberMusician;
+        this.specialMusicNumberSong = specialMusicNumberSong;
     }
 
 }

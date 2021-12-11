@@ -55,6 +55,26 @@ export class EditMeetingComponent implements OnInit {
       'musician': new FormControl(null),
       'song': new FormControl(null)
     });
+
+
+    // this.editMeetingForm.patchValue({
+    //   'id': "",
+    //   'date': this.meeting.date,
+    //   'presidingId': this.meeting.presidingId,
+    //   'conductingId': this.meeting.conductingId,
+    //   'openingPrayer': this.meeting.openingPrayer,
+    //   'closingPrayer': this.meeting.closingPrayer,
+    //   'openingHymnNumber': this.meeting.openingHymnNumber,
+    //   'sacramentHymnNumber': this.meeting.sacramentHymnNumber,
+    //   'intermediateHymnNumber': this.meeting.intermediateHymnNumber,
+    //   'closingHymnNumber': this.meeting.closingHymnNumber,
+    //   'dismissalHymnNumber': this.meeting.dismissalHymnNumber,
+    //   'speakers': this.meeting.speakers,
+    //   'isFastSunday': this.meeting.isFastSunday,
+    //   'isSpecialMusicNumber': this.meeting.isSpecialMusic,
+    //   'specialMusicNumberMusician': this.meeting.musician,
+    //   'specialMusicNumberSong': this.meeting.song,
+    // });
   }
 
   getHymnList() {

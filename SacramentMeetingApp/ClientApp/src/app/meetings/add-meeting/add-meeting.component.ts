@@ -32,6 +32,7 @@ export class AddMeetingComponent implements OnInit {
   hymn: Hymn;
   hymns: Hymn[] = [];
   bishopricList: Bishopric[] = [];
+  form: Meeting;
 
   fetchHymnsEvent = new Subject<Hymn[]>();
   hymnListChanged = new Subject<Hymn[]>();
@@ -148,13 +149,29 @@ export class AddMeetingComponent implements OnInit {
 
   onSubmit() {
 
-    let form = this.addMeetingForm.value;
+    const value = this.addMeetingForm.value;
+    const newMeeting = new Meeting(
+      null,
+      value.date,
+      value.presidingId,
+      value.conductingId,
+      value.openingPrayer,
+      value.closingPrayer,
+      value.openingHymnNumber,
+      value.sacramentHymnNumber,
+      value.intermediateHymnNumber,
+      value.closingHymnNumber,
+      value.dismissalHymnNumber,
+      value.speakers,
+      value.isFastSunday,
+      value.isSpecialMusicNumber,
+      value.specialMusicNumberMusician,
+      value.specialMusicNumberSong
+    );
 
-    this.http.post('https://localhost:5001/api/SacramentMeeting', form).subscribe(
-      (response) => console.log(response),
-      (error) => console.log(error)
-    )
-    
+    console.log(newMeeting);
+
+    this.meetingService.addMeeting(newMeeting);
   }
 
   onAddSpeaker() {
