@@ -61,7 +61,7 @@ export class EditMeetingComponent implements OnInit {
     //   'id': "",
     //   'date': this.meeting.date,
     //   'presidingId': this.meeting.presidingId,
-    //   'conductingId': this.meeting.conductingId,
+    //   'conductorId': this.meeting.conductorId,
     //   'openingPrayer': this.meeting.openingPrayer,
     //   'closingPrayer': this.meeting.closingPrayer,
     //   'openingHymnNumber': this.meeting.openingHymnNumber,
