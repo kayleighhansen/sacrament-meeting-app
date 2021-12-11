@@ -51,7 +51,7 @@ export class AddMeetingComponent implements OnInit {
     this.addMeetingForm = new FormGroup({
       'date': new FormControl(null, Validators.required),
       'presidingId': new FormControl(null, Validators.required),
-      'conductingId': new FormControl(null, Validators.required),
+      'conductorId': new FormControl(null, Validators.required),
       'openingPrayer': new FormControl(null, Validators.required),
       'closingPrayer': new FormControl(null, Validators.required),
       'openingHymnNumber': new FormControl(null, Validators.required),
@@ -154,7 +154,7 @@ export class AddMeetingComponent implements OnInit {
       null,
       value.date,
       value.presidingId,
-      value.conductingId,
+      value.conductorId,
       value.openingPrayer,
       value.closingPrayer,
       value.openingHymnNumber,

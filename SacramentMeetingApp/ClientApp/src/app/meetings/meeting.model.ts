@@ -12,7 +12,7 @@ export class Meeting {
     public date : string;
     
     public presidingId : Bishopric;
-    public conductingId : Bishopric;
+    public conductorId : Bishopric;
 
     public openingPrayer : string;
     public closingPrayer : string;
@@ -35,7 +35,7 @@ export class Meeting {
     constructor(id: number, 
                 date: string, 
                 presidingId: Bishopric,
-                conductingId: Bishopric,
+                conductorId: Bishopric,
                 openingPrayer: string,
                 closingPrayer: string,
                 openingHymnNumber: number,
@@ -53,7 +53,7 @@ export class Meeting {
         this.id = id;
         this.date = date;
         this.presidingId = presidingId;
-        this.conductingId = conductingId;
+        this.conductorId = conductorId;
         this.openingPrayer = openingPrayer;
         this.closingPrayer = closingPrayer;
         this.openingHymnNumber = openingHymnNumber;
