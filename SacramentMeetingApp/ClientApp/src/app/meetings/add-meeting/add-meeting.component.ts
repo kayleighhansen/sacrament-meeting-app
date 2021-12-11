@@ -146,6 +146,7 @@ export class AddMeetingComponent implements OnInit {
       (bishopric: Bishopric[]) => {
         this.bishopricList = bishopric;
         console.log(this.bishopricList);
+        
         this.bishopricList.forEach((bishopric) => {
           this.bishopric = bishopric;
         }); 

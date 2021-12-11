@@ -6,6 +6,8 @@ import { Subject, Subscription } from 'rxjs';
 import { Hymn } from '../hymn.model';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { Router } from '@angular/router';
+
 
 
 @Component({
@@ -24,8 +26,6 @@ export class DisplayComponent implements OnInit, OnDestroy {
   hymns: Hymn[]=[];
   hymnName: string;
 
-  // openingHymnName: string;
-
   fetchMeetingsSubscription: Subscription;
   fetchHymnsSubscription: Subscription;
 
@@ -39,7 +39,7 @@ export class DisplayComponent implements OnInit, OnDestroy {
   dismissalHymnName: string;
 
 
-  constructor(private location: Location, private locationStrategy: LocationStrategy, private meetingService: MeetingService, private http: HttpClient) { }
+  constructor(private location: Location, private locationStrategy: LocationStrategy, private meetingService: MeetingService, private http: HttpClient, private router: Router) { }
 
   ngOnInit() {
     this.getMeetingById();
@@ -71,19 +71,26 @@ export class DisplayComponent implements OnInit, OnDestroy {
 
     this.fetchHymnsSubscription = this.meetingService.fetchHymnsEvent.subscribe((result) => {
       this.openingHymnName = result[this.meeting.openingHymnNumber - 1].name;
-      console.log(this.openingHymnName);
+      //console.log(this.openingHymnName);
 
       this.sacramentHymnName = result[this.meeting.sacramentHymnNumber - 1].name;
-      console.log(this.sacramentHymnName);
+      //console.log(this.sacramentHymnName);
 
       this.intermediateHymnName = result[this.meeting.intermediateHymnNumber - 1].name;
-      console.log(this.intermediateHymnName);
+      //console.log(this.intermediateHymnName);
 
       this.closingHymnName = result[this.meeting.closingHymnNumber - 1].name;
-      console.log(this.closingHymnName);
+      //console.log(this.closingHymnName);
 
       this.dismissalHymnName = result[this.meeting.closingHymnNumber - 1].name;
-      console.log(this.dismissalHymnName);
+      //console.log(this.dismissalHymnName);
+    });
+  }
+
+  onDelete(id) {
+    this.meetingService.deleteMeeting(id).subscribe(() => { 
+      this.meetings = [id];
+      this.router.navigate(['/home']);
     });
   }
 

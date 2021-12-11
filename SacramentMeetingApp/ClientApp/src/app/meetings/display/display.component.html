@@ -87,7 +87,7 @@
 
 <div class="btn-container display-btn-controls">
     <button class="btn btn-info" routerLink="edit">Edit Meeting</button>
-    <button class="btn btn-danger">Delete Meeting</button>
+    <button class="btn btn-danger" (click)="onDelete(this.meeting.id)">Delete Meeting</button>
 
 </div>
 

@@ -93,7 +93,7 @@ namespace SacramentMeetingApp.Controllers
 
         // DELETE: api/SacramentMeeting/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteMeeting(long id)
+        public async Task<IActionResult> DeleteMeeting(int id)
         {
             var meeting = await _context.Meeting.FindAsync(id);
             if (meeting == null)
