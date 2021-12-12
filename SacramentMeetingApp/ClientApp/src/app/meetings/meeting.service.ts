@@ -122,13 +122,13 @@ export class MeetingService {
     console.log(originalMeeting);
     console.log(originalMeeting.id);
 
-    this.http.put(this.baseURL + `api/SacramentMeeting/15`, newMeeting)
+    this.http.put(this.baseURL + `api/SacramentMeeting/18`, newMeeting)
       .subscribe(responseData => {
         console.log(responseData);
       });
   }
 
   deleteMeeting(id : string) {
-    return this.http.delete(this.baseURL + "api/SacramentMeeting/17");
+    return this.http.delete(this.baseURL + "api/SacramentMeeting/18");
   }
 }
