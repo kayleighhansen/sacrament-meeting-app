@@ -45,7 +45,7 @@ export class BishopricEditComponent implements OnInit {
     if (this.editMode) {
       const bishopric = this.bishopricService.getBishopric(this.id);
       bishopricName = bishopric.name;
-      bishopricCalling = bishopric.calling
+      bishopricCalling = bishopric.calling;
 
     }
 
