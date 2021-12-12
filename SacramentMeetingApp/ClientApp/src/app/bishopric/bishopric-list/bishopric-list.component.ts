@@ -17,18 +17,12 @@ export class BishopricListComponent implements OnInit, OnDestroy {
   bishoprics: Bishopric[];
   private bishopricChangedSub: Subscription;
 
-  //Can be Deleted Soon
-  private defaultBishopric: Bishopric = {
-    id: 3,
-    name: 'John Taylor',
-    calling: 'Bishop',
-    status: true
-  }
 
   constructor(private bishopricService: BishopricService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
-    this.bishoprics = this.bishopricService.getBishoprics();
+    this.bishopricService.makeBishopricsCurrent();
+    this.bishoprics = this.bishopricService.getCurrentBishopric();
 
     this.bishopricChangedSub = this.bishopricService.bishopricChangedEvent.subscribe(
       (bishoprics: Bishopric[]) => { this.bishoprics = bishoprics }
