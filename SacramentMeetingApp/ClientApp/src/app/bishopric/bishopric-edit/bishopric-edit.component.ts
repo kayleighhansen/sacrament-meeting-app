@@ -16,6 +16,8 @@ export class BishopricEditComponent implements OnInit {
   bishopricForm: FormGroup;
   callings = ['Bishop', '1st Counselor', '2nd Counselor'];
   bishoprics: Bishopric[];
+  editedBishopric: Bishopric;
+  oldBishopric: Bishopric;
   displayErrorMessage = false;
   errorMessage = {
     oldName: '',
@@ -45,8 +47,12 @@ export class BishopricEditComponent implements OnInit {
     if (this.editMode) {
       const bishopric = this.bishopricService.getBishopric(this.id);
       bishopricName = bishopric.name;
+<<<<<<< HEAD
       bishopricCalling = bishopric.calling;
 
+=======
+      bishopricCalling = bishopric.calling
+>>>>>>> f300abe148e93eadec1c08c30e7eaa40482d70ec
     }
 
     this.bishopricForm = new FormGroup({
@@ -56,47 +62,46 @@ export class BishopricEditComponent implements OnInit {
 
   }
 
-
   onCancel() {
     this.router.navigate(['../'], { relativeTo: this.route });
   }
 
-  //Need to include a function (probably a check in the onSubmit function) 
-  // that checks if that calling is already filled..If it is then display a 
-  // warning message that states: "{{ name }} already fills that calling. 
-  // Please delete {{ name }} before trying to someone to the {{ calling }} calling."
-
   onSubmit() {
 
-    // get the bishoprics array
+    //Store the new values for bishop based on whether we are in edit mode or not
+    // Will need to double check that the editting portion works
+    // Might have problems not being able to overwrite previous bishopric members
+    // if (this.editMode) {
+    //   this.editedBishopric = this.bishopricService.getBishopric(this.id); // troublesome, will overwrite current form with old info?
+    // } else {
+    //   this.editedBishopric = this.bishopricForm.value;
+    // }
+
+    this.editedBishopric = this.bishopricForm.value;
+
     this.bishoprics = this.bishopricService.getBishoprics();
 
-    console.log(this.bishoprics);
-    //loop through bishoprics
-    for (let i = 0; i < this.bishoprics.length; i++) {
-
-      // set current index equal to bishopric
-      let bishopric = this.bishoprics[i];
-
-      // console.log('*********************************');
-      console.log(bishopric);
-      // console.log('*********************************');
-
-      // find where status === true && calling is equal to the new bishopric member
-      if (bishopric.status && (bishopric.calling === this.bishopricForm.get('calling').value)) {
-        this.onDisplayErrorMessage(bishopric.name, bishopric.calling,
-          this.bishopricForm.get('name').value, this.bishopricForm.get('calling').value);
-
-        console.log('Someone in the Bishopric has that calling');
-        return;
-      } else {
-        if (this.editMode) {
-          this.bishopricService.updateBishopric(this.id, this.bishopricForm.value);
-        } else {
-          this.bishopricService.addBishopric(this.bishopricForm.value);
+    this.bishoprics.forEach(
+      (bishopric) => {
+        if (bishopric.status && (bishopric.calling === this.editedBishopric.calling)) {
+          this.oldBishopric = bishopric;
         }
       }
+    )
+
+    if (this.oldBishopric) {
+      this.onDisplayErrorMessage(this.oldBishopric.name, this.oldBishopric.calling,
+        this.editedBishopric.name, this.editedBishopric.calling);
+    } else {
+      if (this.editMode) {
+        this.bishopricService.updateBishopric(this.id, this.bishopricForm.value);
+      } else {
+        this.bishopricService.addBishopric(this.bishopricForm.value);
+      }
+      this.onCancel();
     }
+
+
   }
 
   onDisplayErrorMessage(oldName, oldCalling, newName, newCalling) {
