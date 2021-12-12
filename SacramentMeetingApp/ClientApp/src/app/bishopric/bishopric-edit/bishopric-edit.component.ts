@@ -47,12 +47,8 @@ export class BishopricEditComponent implements OnInit {
     if (this.editMode) {
       const bishopric = this.bishopricService.getBishopric(this.id);
       bishopricName = bishopric.name;
-<<<<<<< HEAD
       bishopricCalling = bishopric.calling;
 
-=======
-      bishopricCalling = bishopric.calling
->>>>>>> f300abe148e93eadec1c08c30e7eaa40482d70ec
     }
 
     this.bishopricForm = new FormGroup({

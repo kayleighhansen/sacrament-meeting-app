@@ -198,8 +198,8 @@ export class EditMeetingComponent implements OnInit {
     this.fetchBishopricSubscription = this.meetingService.bishopricListChanged.subscribe(
       (bishopric: Bishopric[]) => {
         this.bishopricList = bishopric;
-        this.presiding = this.bishopricList[this.meeting.presidingId - 1].name;
-        this.conductor = this.bishopricList[this.meeting.conductorId - 1].name;
+        //this.presiding = this.bishopricList[this.meeting.presidingId - 1].name;
+        //this.conductor = this.bishopricList[this.meeting.conductorId - 1].name;
       }
     );
   }
@@ -223,7 +223,6 @@ export class EditMeetingComponent implements OnInit {
     this.originalMeeting = this.meetingService.getMeeting(this.meeting.id);
 
     const newMeeting = new Meeting(
-      15,
       15,
       value.date,
       value.presidingId,

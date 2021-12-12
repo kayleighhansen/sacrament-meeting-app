@@ -167,7 +167,6 @@ export class AddMeetingComponent implements OnInit {
     const value = this.addMeetingForm.value;
     const newMeeting = new Meeting(
       null,
-      15,
       value.date,
       value.presidingId,
       value.conductorId,
