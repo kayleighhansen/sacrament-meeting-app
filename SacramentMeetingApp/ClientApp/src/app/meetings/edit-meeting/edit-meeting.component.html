@@ -14,21 +14,17 @@
                 </div>
                 <div class="form-field">
                     <label for="presiding">Presiding <span class="required">*</span></label><br>
-                    <select type="text" class="presidingId" id="presidingId" formControlName="presidingId">
-                        <option value="">--</option>
-                        <option value="Bishop">Bishop</option>
-                        <option value="First Counselor">First Counselor</option>
-                        <option value="Second Counselor">Second Counselor</option>
-                    </select> 
+                    <input type="text" class="presidingId" id="presidingId" formControlName="presidingId">
+                        <!-- <option *ngFor="let bishopricEl of bishopricList" value="{{ bishopricEl.id }}">{{bishopricEl.calling}}, {{ bishopricEl.name }}</option> -->
+
+                    <!-- </select>  -->
                 </div>
                 <div class="form-field">
                     <label for="presiding">Conducting <span class="required">*</span></label><br>
-                    <select type="text" class="conductingId" id="conductingId" formControlName="conductingId">
-                        <option value="">--</option>
-                        <option value="Bishop">Bishop</option>
-                        <option value="First Counselor">First Counselor</option>
-                        <option value="Second Counselor">Second Counselor</option>
-                    </select> 
+                    <input type="text" class="conductingId" id="conductingId" formControlName="conductorId">
+                        <!-- <option *ngFor="let bishopricEl of bishopricList" value="{{ bishopricEl.id }}">{{bishopricEl.calling}}, {{ bishopricEl.name }}</option>
+
+                    </select>  -->
                 </div>
                 <div class="form-field">
                     <label for="openingPrayer">Opening Prayer <span class="required">*</span></label><br>
@@ -45,33 +41,33 @@
             <div>
                 <div class="form-field">
                     <label for="openingHymn">Opening Hymn <span class="required">*</span></label><br>
-                    <select type="number" class="openingHymn" id="openingHymn" formControlName="openingHymn">
-                        <option value="">---</option>
-                    </select>
+                    <input type="number" class="openingHymn" id="openingHymn" formControlName="openingHymnNumber">
+                        <!-- <option value="">---</option>
+                    </select> -->
                 </div>
                 <div class="form-field">
                     <label for="sacramentHymn">Sacrament Hymn <span class="required">*</span></label><br>
-                    <select type="number" class="sacramentHymn" id="sacramentHymn" formControlName="sacramentHymn">
-                        <option value="">---</option>
-                    </select>
+                    <input type="number" class="sacramentHymn" id="sacramentHymn" formControlName="sacramentHymnNumber">
+                        <!-- <option value="">---</option>
+                    </select> -->
                 </div>
                 <div class="form-field">
                     <label for="intermediateHymn">Intermediate Hymn</label><br>
-                    <select type="number" class="intermediateHymn" id="intermediateHymn" formControlName="intermediateHymn">
-                        <option value="">---</option>
-                    </select>
+                    <input type="number" class="intermediateHymn" id="intermediateHymn" formControlName="intermediateHymnNumber">
+                        <!-- <option value="">---</option>
+                    </select> -->
                 </div>
                 <div class="form-field">
                     <label for="closingHymn">Closing Hymn <span class="required">*</span></label><br>
-                    <select type="number" class="closingHymn" id="closingHymn" formControlName="closingHymn">
-                        <option value="">---</option>
-                    </select>
+                    <input type="number" class="closingHymn" id="closingHymn" formControlName="closingHymnNumber">
+                        <!-- <option value="">---</option>
+                    </select> -->
                 </div>
                 <div class="form-field">
                     <label for="dismissalHymn">Dismissal Hymn <span class="required">*</span></label><br>
-                    <select type="number" class="dismissalHymn" id="dismissalHymn" formControlName="dismissalHymn">
-                        <option value="">---</option>
-                    </select>
+                    <input type="number" class="dismissalHymn" id="dismissalHymn" formControlName="dismissalHymnNumber">
+                        <!-- <option value="">---</option>
+                    </select> -->
                 </div>
             </div>
         </section>
@@ -109,7 +105,7 @@
                 <div class="form-field">
                     <div class="form-field">
                         <label class="container">Special Music Number <span class="required">*</span>
-                            <input type="checkbox" class="isMusicSunday" id="isMusicSunday" formControlName="isMusicSunday">
+                            <input type="checkbox" class="isMusicSunday" id="isMusicSunday" formControlName="isSpecialMusicNumber">
                             <span class="checkmark"></span>
                         </label>
                     </div>
@@ -118,11 +114,11 @@
                             <div>
                                 <div class="form-field">
                                     <label for="musician">Musician/Group</label><br>
-                                    <input type="text" class="musician form-control" id="musician" formControlName="musician">
+                                    <input type="text" class="musician form-control" id="musician" formControlName="specialMusicNumberMusician">
                                 </div>
                                 <div class="form-field">
                                     <label for="song">Song</label><br>
-                                    <input type="text" class="song form-control" id="song" name="song" formControlName="song">
+                                    <input type="text" class="song form-control" id="song" name="song" formControlName="specialMusicNumberSong">
                                 </div>
                             </div>
                         </div>

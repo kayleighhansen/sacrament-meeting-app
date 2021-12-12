@@ -7,6 +7,7 @@ import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 import { MeetingService } from '../meeting.service';
 import { Location, LocationStrategy } from '@angular/common';
 import { Meeting } from '../meeting.model';
+import { Bishopric } from 'src/app/bishopric/bishopric.model';
 
 
 @Component({
@@ -17,64 +18,63 @@ import { Meeting } from '../meeting.model';
 export class EditMeetingComponent implements OnInit {
 
   error: string;
+  presiding: string;
+  conductor: string;
+
+  isSpecialMusic: boolean = false;
 
   hymn: Hymn;
   hymns: Hymn[] = [];
 
+  bishopric: Bishopric;
+  bishopricList: Bishopric[] = [];
+
+
   meeting: Meeting;
+  originalMeeting: Meeting;
   meetings: Meeting[]=[];
 
   fetchHymnsEvent = new Subject<Hymn[]>();
   hymnListChanged = new Subject<Hymn[]>();
   fetchMeetingsSubscription: Subscription;
 
+  fetchBishopricSubscription: Subscription;
+
+
   editMeetingForm: FormGroup;
 
   constructor(private location: Location, private locationStrategy: LocationStrategy, private http: HttpClient, private meetingService: MeetingService) { }
 
   ngOnInit() {
-    this.getHymnList();
+    this.initForm();    
+  }
 
-    this.getMeetingById();
+  private initForm() {
 
     this.editMeetingForm = new FormGroup({
       'date': new FormControl(null, Validators.required),
       'presidingId': new FormControl(null, Validators.required),
-      'conductingId': new FormControl(null, Validators.required),
+      'conductorId': new FormControl(null, Validators.required),
       'openingPrayer': new FormControl(null, Validators.required),
       'closingPrayer': new FormControl(null, Validators.required),
-      'openingHymn': new FormControl(null, Validators.required),
-      'sacramentHymn': new FormControl(null, Validators.required),
-      'intermediateHymn': new FormControl(null),
-      'closingHymn': new FormControl(null, Validators.required),
-      'dismissalHymn': new FormControl(null, Validators.required),
+      'openingHymnNumber': new FormControl(null, Validators.required),
+      'sacramentHymnNumber': new FormControl(null, Validators.required),
+      'intermediateHymnNumber': new FormControl(null),
+      'closingHymnNumber': new FormControl(null, Validators.required),
+      'dismissalHymnNumber': new FormControl(null, Validators.required),
       'isFastSunday': new FormControl(null, Validators.required),
       'speakers': new FormArray([]),
 
-      'isMusicSunday': new FormControl(null, Validators.required),
-      'musician': new FormControl(null),
-      'song': new FormControl(null)
+      'isSpecialMusicNumber': new FormControl(null, Validators.required),
+      'specialMusicNumberMusician': new FormControl(null),
+      'specialMusicNumberSong': new FormControl(null)
     });
 
+    //this.getBishopric();
+    this.getHymnList();
+    this.getMeetingById();
+    
 
-    // this.editMeetingForm.patchValue({
-    //   'id': "",
-    //   'date': this.meeting.date,
-    //   'presidingId': this.meeting.presidingId,
-    //   'conductorId': this.meeting.conductorId,
-    //   'openingPrayer': this.meeting.openingPrayer,
-    //   'closingPrayer': this.meeting.closingPrayer,
-    //   'openingHymnNumber': this.meeting.openingHymnNumber,
-    //   'sacramentHymnNumber': this.meeting.sacramentHymnNumber,
-    //   'intermediateHymnNumber': this.meeting.intermediateHymnNumber,
-    //   'closingHymnNumber': this.meeting.closingHymnNumber,
-    //   'dismissalHymnNumber': this.meeting.dismissalHymnNumber,
-    //   'speakers': this.meeting.speakers,
-    //   'isFastSunday': this.meeting.isFastSunday,
-    //   'isSpecialMusicNumber': this.meeting.isSpecialMusic,
-    //   'specialMusicNumberMusician': this.meeting.musician,
-    //   'specialMusicNumberSong': this.meeting.song,
-    // });
   }
 
   getHymnList() {
@@ -159,13 +159,49 @@ export class EditMeetingComponent implements OnInit {
         if (x.id == parseInt(id)) {
           this.meeting = x ;
           console.log(this.meeting);
+          
+          this.initPatch();
+          this.getBishopricMember();
         } 
       }
     );
     }, error => {
       this.error = error.message;
     });
+  }
 
+  initPatch() {
+    this.editMeetingForm.patchValue({
+      'id': "",
+      'date': this.meeting.date,
+      'presidingId': this.meeting.presidingId,
+      'conductorId': this.meeting.conductorId,
+      'openingPrayer': this.meeting.openingPrayer,
+      'closingPrayer': this.meeting.closingPrayer,
+      'openingHymnNumber': this.meeting.openingHymnNumber,
+      'sacramentHymnNumber': this.meeting.sacramentHymnNumber,
+      'intermediateHymnNumber': this.meeting.intermediateHymnNumber,
+      'closingHymnNumber': this.meeting.closingHymnNumber,
+      'dismissalHymnNumber': this.meeting.dismissalHymnNumber,
+      'speakers': this.meeting.speakers,
+      'isFastSunday': this.meeting.isFastSunday,
+      'isSpecialMusicNumber': this.meeting.isSpecialMusicNumber,
+      'specialMusicNumberMusician': this.meeting.specialMusicNumberMusician,
+      'specialMusicNumberSong': this.meeting.specialMusicNumberSong,
+    });
+  }
+
+  getBishopricMember() {
+
+    this.meetingService.fetchBishopric();
+
+    this.fetchBishopricSubscription = this.meetingService.bishopricListChanged.subscribe(
+      (bishopric: Bishopric[]) => {
+        this.bishopricList = bishopric;
+        this.presiding = this.bishopricList[this.meeting.presidingId - 1].name;
+        this.conductor = this.bishopricList[this.meeting.conductorId - 1].name;
+      }
+    );
   }
 
   onAddSpeaker() {
@@ -182,7 +218,35 @@ export class EditMeetingComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.editMeetingForm);
+    const value = this.editMeetingForm.value;
+
+    this.originalMeeting = this.meetingService.getMeeting(this.meeting.id);
+
+    const newMeeting = new Meeting(
+      15,
+      15,
+      value.date,
+      value.presidingId,
+      value.conductorId,
+      value.openingPrayer,
+      value.closingPrayer,
+      value.openingHymnNumber,
+      value.sacramentHymnNumber,
+      value.intermediateHymnNumber,
+      value.closingHymnNumber,
+      value.dismissalHymnNumber,
+      value.speakers,
+      value.isFastSunday,
+      value.isFastSunday,
+      value.specialMusicNumberMusician,
+      value.specialMusicNumberSong
+    );
+
+    console.log(newMeeting);
+
+    this.meetingService.updateMeeting(newMeeting, this.originalMeeting); 
+
+
   }
 
   ngOnDestroy(): void {

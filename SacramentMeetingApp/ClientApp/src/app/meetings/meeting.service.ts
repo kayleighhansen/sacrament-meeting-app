@@ -112,11 +112,23 @@ export class MeetingService {
       });
   }
 
-  updateMeeting(newMeeting, oldMeeting) {
+  getMeeting(id: number) {
+    return this.meetings.find((meeting) => meeting.id === id)
+  }
 
+  updateMeeting(newMeeting: Meeting, originalMeeting: Meeting) {
+
+    console.log(newMeeting);
+    console.log(originalMeeting);
+    console.log(originalMeeting.id);
+
+    // this.http.put(this.baseURL + `api/SacramentMeeting/15`, newMeeting)
+    //   .subscribe(responseData => {
+    //     console.log(responseData);
+    //   });
   }
 
   deleteMeeting(id : string) {
-    return this.http.delete(this.baseURL + "api/SacramentMeeting/" + id);
+    return this.http.delete(this.baseURL + "api/SacramentMeeting/15");
   }
 }

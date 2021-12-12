@@ -9,10 +9,11 @@ export class Meeting {
     // }
 
     public id : number;
+    public meetingId : number;
     public date : string;
     
-    public presidingId : Bishopric;
-    public conductorId : Bishopric;
+    public presidingId : number;
+    public conductorId : number;
 
     public openingPrayer : string;
     public closingPrayer : string;
@@ -33,9 +34,10 @@ export class Meeting {
 
 
     constructor(id: number, 
+                meetingId : number,
                 date: string, 
-                presidingId: Bishopric,
-                conductorId: Bishopric,
+                presidingId: number,
+                conductorId: number,
                 openingPrayer: string,
                 closingPrayer: string,
                 openingHymnNumber: number,
@@ -51,6 +53,7 @@ export class Meeting {
                 ) {
 
         this.id = id;
+        this.meetingId = meetingId
         this.date = date;
         this.presidingId = presidingId;
         this.conductorId = conductorId;

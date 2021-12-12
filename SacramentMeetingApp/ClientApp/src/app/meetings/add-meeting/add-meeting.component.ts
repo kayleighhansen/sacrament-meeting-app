@@ -146,7 +146,7 @@ export class AddMeetingComponent implements OnInit {
       (bishopric: Bishopric[]) => {
         this.bishopricList = bishopric;
         console.log(this.bishopricList);
-        
+
         this.bishopricList.forEach((bishopric) => {
           this.bishopric = bishopric;
         }); 
@@ -167,6 +167,7 @@ export class AddMeetingComponent implements OnInit {
     const value = this.addMeetingForm.value;
     const newMeeting = new Meeting(
       null,
+      15,
       value.date,
       value.presidingId,
       value.conductorId,
